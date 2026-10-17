@@ -1,0 +1,132 @@
+[
+  {
+    "path": "CONFIGURACION_CONSULTA_RUC.md",
+    "backup": null,
+    "finalSha256": "54a1fb634c1db196e4bca2845a4be837dc80922718b6812cb615d192dbb05495"
+  },
+  {
+    "path": "GUIA_HU04_PARA_EXPOSICION.md",
+    "backup": "C:\\Users\\Usuario\\Desktop\\Ejercicios Progra\\Ejercicios Kotlin\\SiderurgicaFirebase_Sprints_1_2_3\\SiderurgicaFirebase\\.codex-backups\\ruc-interno-20261017-031051\\GUIA_HU04_PARA_EXPOSICION.md",
+    "finalSha256": "9baa99adfaa40b0655c3a24956ad1ff0c655a88b8be0a69c8dd46cd355f4a7bc"
+  },
+  {
+    "path": "GUIA_HU08_COMPRAS_Y_PRUEBAS.md",
+    "backup": "C:\\Users\\Usuario\\Desktop\\Ejercicios Progra\\Ejercicios Kotlin\\SiderurgicaFirebase_Sprints_1_2_3\\SiderurgicaFirebase\\.codex-backups\\ruc-interno-20261017-031051\\GUIA_HU08_COMPRAS_Y_PRUEBAS.md",
+    "finalSha256": "dda12f4def6caa3e422f415957275c05158fa223e5bd9baf082416b77aa1aa63"
+  },
+  {
+    "path": "GUIA_SPRINTS_1_2_3.md",
+    "backup": "C:\\Users\\Usuario\\Desktop\\Ejercicios Progra\\Ejercicios Kotlin\\SiderurgicaFirebase_Sprints_1_2_3\\SiderurgicaFirebase\\.codex-backups\\ruc-interno-20261017-031051\\GUIA_SPRINTS_1_2_3.md",
+    "finalSha256": "6deed2d6aa0d72ff65339fbea604774274f9e573d626ecf5c88cd22a7657f5d3"
+  },
+  {
+    "path": "GUION_HU08_FLUJO_COMPLETO.md",
+    "backup": "C:\\Users\\Usuario\\Desktop\\Ejercicios Progra\\Ejercicios Kotlin\\SiderurgicaFirebase_Sprints_1_2_3\\SiderurgicaFirebase\\.codex-backups\\ruc-interno-20261017-031051\\GUION_HU08_FLUJO_COMPLETO.md",
+    "finalSha256": "8f45b7dd4361a7a19610638cdb0364855f20c431d5cd26688b62f1dda1086188"
+  },
+  {
+    "path": "README.md",
+    "backup": "C:\\Users\\Usuario\\Desktop\\Ejercicios Progra\\Ejercicios Kotlin\\SiderurgicaFirebase_Sprints_1_2_3\\SiderurgicaFirebase\\.codex-backups\\ruc-interno-20261017-031051\\README.md",
+    "finalSha256": "2c56b35290d92171a32058ab8c5aaa18e0285262296841fd09804c7712854292"
+  },
+  {
+    "path": "VALIDACION.md",
+    "backup": "C:\\Users\\Usuario\\Desktop\\Ejercicios Progra\\Ejercicios Kotlin\\SiderurgicaFirebase_Sprints_1_2_3\\SiderurgicaFirebase\\.codex-backups\\ruc-interno-20261017-031051\\VALIDACION.md",
+    "finalSha256": "dd3e232bebe8e7fe95a2709fd20ea9ecb284f84d9177993b5521bc67aa91a4d4"
+  },
+  {
+    "path": "app/build.gradle.kts",
+    "backup": "C:\\Users\\Usuario\\Desktop\\Ejercicios Progra\\Ejercicios Kotlin\\SiderurgicaFirebase_Sprints_1_2_3\\SiderurgicaFirebase\\.codex-backups\\ruc-interno-20261017-031051\\app\\build.gradle.kts",
+    "finalSha256": "b40203e7a58b4f3afffd933bae3f27793d70d23bef6ce0fc82ee66b1f7eb29a9"
+  },
+  {
+    "path": "app/src/main/java/pe/edu/unmsm/siderurgica/data/remote/RucApi.kt",
+    "backup": "C:\\Users\\Usuario\\Desktop\\Ejercicios Progra\\Ejercicios Kotlin\\SiderurgicaFirebase_Sprints_1_2_3\\SiderurgicaFirebase\\.codex-backups\\ruc-interno-20261017-031051\\app\\src\\main\\java\\pe\\edu\\unmsm\\siderurgica\\data\\remote\\RucApi.kt",
+    "finalSha256": "33b65c7c9c0e5ae33922fc5cc54cbdf452736cdd533ea1bb230a5bc5ec7b0805"
+  },
+  {
+    "path": "app/src/main/java/pe/edu/unmsm/siderurgica/di/AppModule.kt",
+    "backup": "C:\\Users\\Usuario\\Desktop\\Ejercicios Progra\\Ejercicios Kotlin\\SiderurgicaFirebase_Sprints_1_2_3\\SiderurgicaFirebase\\.codex-backups\\ruc-interno-20261017-031051\\app\\src\\main\\java\\pe\\edu\\unmsm\\siderurgica\\di\\AppModule.kt",
+    "finalSha256": "ac515ebac637d37dd6a9de8a31ebd7204ea7a3227f19175ee29497236257afa4"
+  },
+  {
+    "path": "app/src/main/java/pe/edu/unmsm/siderurgica/ui/common/ErrorMessages.kt",
+    "backup": "C:\\Users\\Usuario\\Desktop\\Ejercicios Progra\\Ejercicios Kotlin\\SiderurgicaFirebase_Sprints_1_2_3\\SiderurgicaFirebase\\.codex-backups\\ruc-interno-20261017-031051\\app\\src\\main\\java\\pe\\edu\\unmsm\\siderurgica\\ui\\common\\ErrorMessages.kt",
+    "finalSha256": "39807abe54b8c7407e11e7b24b03c0309f0ed7952723286845588eabac40b19a"
+  },
+  {
+    "path": "app/src/main/java/pe/edu/unmsm/siderurgica/ui/screens/business/BusinessScreen.kt",
+    "backup": "C:\\Users\\Usuario\\Desktop\\Ejercicios Progra\\Ejercicios Kotlin\\SiderurgicaFirebase_Sprints_1_2_3\\SiderurgicaFirebase\\.codex-backups\\ruc-interno-20261017-031051\\app\\src\\main\\java\\pe\\edu\\unmsm\\siderurgica\\ui\\screens\\business\\BusinessScreen.kt",
+    "finalSha256": "98a55aaf51499d35b7f7c33b26cbd45638051c371b86c8cfcb9fdef9ba75a288"
+  },
+  {
+    "path": "app/src/main/java/pe/edu/unmsm/siderurgica/ui/screens/business/BusinessViewModel.kt",
+    "backup": "C:\\Users\\Usuario\\Desktop\\Ejercicios Progra\\Ejercicios Kotlin\\SiderurgicaFirebase_Sprints_1_2_3\\SiderurgicaFirebase\\.codex-backups\\ruc-interno-20261017-031051\\app\\src\\main\\java\\pe\\edu\\unmsm\\siderurgica\\ui\\screens\\business\\BusinessViewModel.kt",
+    "finalSha256": "2066f8e13ca99207558bfa9b37bb54467eb8a1e3e1e5e298cecdd8a2208a50c1"
+  },
+  {
+    "path": "app/src/main/java/pe/edu/unmsm/siderurgica/ui/screens/business/CommercialScreen.kt",
+    "backup": "C:\\Users\\Usuario\\Desktop\\Ejercicios Progra\\Ejercicios Kotlin\\SiderurgicaFirebase_Sprints_1_2_3\\SiderurgicaFirebase\\.codex-backups\\ruc-interno-20261017-031051\\app\\src\\main\\java\\pe\\edu\\unmsm\\siderurgica\\ui\\screens\\business\\CommercialScreen.kt",
+    "finalSha256": "111b6200983cda77a526306b5fa1a00c2323f8ee36ecdcdb93af67061a7d534e"
+  },
+  {
+    "path": "app/src/main/java/pe/edu/unmsm/siderurgica/ui/screens/suppliers/SupplierScreen.kt",
+    "backup": "C:\\Users\\Usuario\\Desktop\\Ejercicios Progra\\Ejercicios Kotlin\\SiderurgicaFirebase_Sprints_1_2_3\\SiderurgicaFirebase\\.codex-backups\\ruc-interno-20261017-031051\\app\\src\\main\\java\\pe\\edu\\unmsm\\siderurgica\\ui\\screens\\suppliers\\SupplierScreen.kt",
+    "finalSha256": "2b4a4f95c8f362c29ad2cebde6a6a337ad8633bbba90787b2bb61b2502c43300"
+  },
+  {
+    "path": "app/src/main/java/pe/edu/unmsm/siderurgica/ui/screens/suppliers/SupplierViewModel.kt",
+    "backup": "C:\\Users\\Usuario\\Desktop\\Ejercicios Progra\\Ejercicios Kotlin\\SiderurgicaFirebase_Sprints_1_2_3\\SiderurgicaFirebase\\.codex-backups\\ruc-interno-20261017-031051\\app\\src\\main\\java\\pe\\edu\\unmsm\\siderurgica\\ui\\screens\\suppliers\\SupplierViewModel.kt",
+    "finalSha256": "61b0dd333163808ee3eb9f7370ef46f68bf5653bdd96b0fbf995dfefe48822c6"
+  },
+  {
+    "path": "app/src/test/java/pe/edu/unmsm/siderurgica/RucApiTest.kt",
+    "backup": "C:\\Users\\Usuario\\Desktop\\Ejercicios Progra\\Ejercicios Kotlin\\SiderurgicaFirebase_Sprints_1_2_3\\SiderurgicaFirebase\\.codex-backups\\ruc-interno-20261017-031051\\app\\src\\test\\java\\pe\\edu\\unmsm\\siderurgica\\RucApiTest.kt",
+    "finalSha256": "2e00f75a715548b886fcea3920b5ba08ac67b0083861b1fe120690ffe1b24d8d"
+  },
+  {
+    "path": "cloud-ruc/.dockerignore",
+    "backup": null,
+    "finalSha256": "a6295044697a906d24b6e2cb1859babdf3db0f3d801926f3045500f1385574d0"
+  },
+  {
+    "path": "cloud-ruc/.gcloudignore",
+    "backup": null,
+    "finalSha256": "62c24dd9a7474df96444c5420f59e096cce3b3050e31a6b7a821ad22890b7393"
+  },
+  {
+    "path": "cloud-ruc/Dockerfile",
+    "backup": null,
+    "finalSha256": "dbddb94ffe8584258650474512d34a73072aab42c75ceaf5ea20e04dcaba22ca"
+  },
+  {
+    "path": "cloud-ruc/README.md",
+    "backup": null,
+    "finalSha256": "a102bfa43edf4b0b059d3e8e1492e7ab55af25d46a85d3c0e76b4c7bf06448c0"
+  },
+  {
+    "path": "cloud-ruc/build.gradle.kts",
+    "backup": null,
+    "finalSha256": "3d8390cbc2660af8990369f6a6f87f5d89eb387d6a431e1d772375ce3626ffca"
+  },
+  {
+    "path": "cloud-ruc/settings.gradle.kts",
+    "backup": null,
+    "finalSha256": "4721c15851a7268b0889cdb6c6eaed7f2f47790e7cad9525fd71fd2d4f600355"
+  },
+  {
+    "path": "cloud-ruc/src/main/kotlin/RucServer.kt",
+    "backup": null,
+    "finalSha256": "266e678bb0dd0f37646ef6988ebf77a8d87197add1672893f6e411754a56da84"
+  },
+  {
+    "path": "cloud-ruc/src/main/kotlin/RucService.kt",
+    "backup": null,
+    "finalSha256": "67e5d4ad3b9987d200cb6c39f835acfc51baa85237a569489f44766d0c269bfa"
+  },
+  {
+    "path": "cloud-ruc/src/test/kotlin/RucServiceTest.kt",
+    "backup": null,
+    "finalSha256": "af0bbc08774727ad37fa2a8c9ce2b79d981d43eeee8f27ab5d286426df188e03"
+  }
+]

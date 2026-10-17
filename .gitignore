@@ -1,0 +1,12 @@
+.gradle/
+**/build/
+local.properties
+.idea/
+app/google-services.json
+*.jks
+*.keystore
+
+node_modules/
+.npm-cache/
+.kotlin/
+*-debug.log

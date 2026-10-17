@@ -1,0 +1,199 @@
+package pe.edu.unmsm.siderurgica.firebase
+
+import com.google.firebase.firestore.*
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
+import kotlinx.coroutines.CancellationException
+import kotlinx.coroutines.tasks.await
+import pe.edu.unmsm.siderurgica.data.local.*
+import pe.edu.unmsm.siderurgica.domain.model.*
+import pe.edu.unmsm.siderurgica.domain.repository.BusinessRepository
+import pe.edu.unmsm.siderurgica.domain.rules.BusinessRules
+import pe.edu.unmsm.siderurgica.domain.rules.PurchaseRules
+
+class FirestoreBusinessRepository(private val services: FirebaseServices, private val cache: DeviceCache) : BusinessRepository {
+    private val db get() = services.database
+    private val gson = Gson()
+    private fun owner() = services.auth.currentUser?.uid ?: error("Inicia sesión.")
+    private fun collection(kind: String) = when(kind) { "quotes" -> "cotizaciones_v2"; "orders" -> "pedidos_v2"; "sales" -> "ventas_v2"; "purchases" -> "compras_v2"; else -> error("Listado inválido.") }
+    private suspend inline fun <reified T> cached(key: String, crossinline load: suspend () -> List<T>): List<T> {
+        val uid = owner()
+        val type = object : TypeToken<List<T>>() {}.type
+        if (!cache.online) return cache.read<List<T>>(uid, key, type) ?: emptyList()
+        return try { load().also { cache.save(uid, key, it) } }
+        catch(e: Exception) { if (e is CancellationException || !networkFailure(e)) throw e; cache.read<List<T>>(uid,key,type) ?: throw e }
+    }
+    override suspend fun records(kind: String): List<BusinessRecord> = cached("v2-$kind") {
+        db.collection(collection(kind)).get(Source.SERVER).await().documents.map { d ->
+            gson.fromJson(gson.toJson(d.data.orEmpty().filterKeys { it !in listOf("createdAt", "updatedAt", "decisionAt", "receivedAt") }), BusinessRecord::class.java)
+                .copy(id=d.id, createdAt=d.getTimestamp("createdAt")?.toDate()?.time ?: 0, decisionAt=d.getTimestamp("decisionAt")?.toDate()?.time ?: 0, receivedAt=d.getTimestamp("receivedAt")?.toDate()?.time ?: 0)
+        }.sortedByDescending { it.createdAt }
+    }
+    override suspend fun clients(): List<BusinessClient> = cached("v2-clients") {
+        db.collection("clientes_v2").get(Source.SERVER).await().documents.map { BusinessClient(it.id,it.getString("name").orEmpty(),it.getString("ruc").orEmpty()) }.sortedBy { it.name }
+    }
+    override suspend fun currentRole(): String = db.collection("usuarios").document(owner()).get().await().getString("rol").orEmpty()
+    override suspend fun purchaseBudget(period: String): PurchaseBudget {
+        PurchaseRules.period(period)
+        return cached<PurchaseBudget>("purchase-budget-$period") {
+            val d=db.collection("presupuestos_compras").document(period).get(Source.SERVER).await()
+            listOf(PurchaseBudget(period,d.getLong("totalCents")?:0,d.getLong("reservedCents")?:0,d.getLong("spentCents")?:0))
+        }.firstOrNull() ?: PurchaseBudget(period)
+    }
+    override suspend fun movements(): List<StockMovement> = cached("v2-movements") {
+        db.collection("movimientos_v2").get(Source.SERVER).await().documents.map { d ->
+            gson.fromJson(gson.toJson(d.data.orEmpty().filterKeys { it != "createdAt" }), StockMovement::class.java)
+                .copy(id=d.id, createdAt=d.getTimestamp("createdAt")?.toDate()?.time ?: 0)
+        }.sortedByDescending { it.createdAt }
+    }
+    override suspend fun execute(id: String, owner: String, command: BusinessCommand) {
+        require(owner() == owner) { "La operación pertenece a otra cuenta." }
+        val audit = db.collection("operaciones_v2").document(id)
+        db.runTransaction { tx ->
+            val done = tx.get(audit)
+            val fingerprint = gson.toJson(command)
+            if (done.exists()) {
+                require(done.getString("owner") == owner && gson.fromJson(done.getString("payload"), BusinessCommand::class.java) == command) { "Identificador de operación reutilizado." }
+            } else {
+                when(command.action) {
+                    "CLIENT_CREATE" -> {
+                        BusinessRules.client(command.client, command.ruc)
+                        val ref = db.collection("clientes_v2").document(if(command.ruc.isBlank()) id else command.ruc)
+                        val old = tx.get(ref)
+                        require(!old.exists()) { "Ya existe un cliente con ese RUC." }
+                        tx.set(ref, mapOf("name" to command.client.trim(), "ruc" to command.ruc, "owner" to owner, "createdAt" to FieldValue.serverTimestamp()))
+                    }
+                    "QUOTE_CREATE", "ORDER_CREATE", "PURCHASE_CREATE" -> create(tx,id,owner,command)
+                    "QUOTE_STATE", "ORDER_STATE" -> state(tx,id,owner,command)
+                    "SALE_CREATE", "PURCHASE_RECEIVE" -> fulfill(tx,id,owner,command)
+                    "BUDGET_SET" -> budget(tx,id,owner,command)
+                    "PURCHASE_STATE" -> purchaseState(tx,id,owner,command)
+                    "MOVEMENT" -> manual(tx,id,owner,command)
+                    else -> error("Operación comercial desconocida.")
+                }
+                tx.set(audit, mapOf("owner" to owner, "action" to command.action, "target" to command.target,
+                    "payload" to fingerprint, "createdAt" to FieldValue.serverTimestamp()))
+            }
+        }.await()
+    }
+    private fun product(d: DocumentSnapshot) = Product(d.id,d.getString("nombre").orEmpty(),d.getString("categoria").orEmpty(),d.getLong("precioCentimos") ?: 0,d.getLong("stock") ?: 0,d.getLong("stockMinimo") ?: 0)
+    private fun create(tx: Transaction,id: String,owner: String,c: BusinessCommand) {
+        val purchase = c.action == "PURCHASE_CREATE"
+        val order = c.action == "ORDER_CREATE"
+        val kind = if(purchase) "compras_v2" else if(order) "pedidos_v2" else "cotizaciones_v2"
+        val targetId = if(order && c.reference.isNotBlank()) c.reference else id
+        val ref = db.collection(kind).document(targetId)
+        require(!tx.get(ref).exists()) { "El documento ya fue creado." }
+        val quote = if(order && c.reference.isNotBlank()) tx.get(db.collection("cotizaciones_v2").document(c.reference)) else null
+        val client = if(purchase) null else tx.get(db.collection("clientes_v2").document(c.clientId))
+        val supplier = if(purchase) tx.get(db.collection("proveedores").document(c.supplierRuc)) else null
+        if(purchase) require(supplier?.exists() == true) { "Selecciona un proveedor registrado y sincronizado." }
+        else {
+            require(client?.exists() == true) { "Sincroniza primero el cliente seleccionado." }
+            require(client?.getString("name") == c.client.trim() && client.getString("ruc") == c.ruc) { "Los datos del cliente cambiaron." }
+            BusinessRules.client(c.client,c.ruc)
+        }
+        val snapshots = c.lines.map { tx.get(db.collection("productos").document(it.productId)) }
+        require(snapshots.all { it.exists() }) { "Producto no encontrado." }
+        val lines = if(quote != null) {
+            require(quote.getString("status") == "APROBADA") { "Primero aprueba la cotización." }
+            require(quote.getString("clientId") == c.clientId) { "Cliente distinto a la cotización." }
+            decodeLines(quote)
+        } else BusinessRules.lines(c.lines,snapshots.map(::product),purchase)
+        require(lines.size in 1..3 && lines.map { it.productId } == c.lines.map { it.productId }) { "Detalle inconsistente." }
+        if(order) lines.forEach { l -> require(snapshots.first { it.id==l.productId }.getLong("stock")!! >= l.quantity) { "Stock insuficiente para ${l.name}." } }
+        val amounts = BusinessRules.total(lines)
+        if(purchase) PurchaseRules.metadata(c.budgetPeriod,c.deliveryDate,c.supplierQuote)
+        val data = mapOf("owner" to owner,"client" to (if(purchase) supplier!!.getString("nombre").orEmpty() else c.client.trim()),
+            "ruc" to (if(purchase) c.supplierRuc else c.ruc),"clientId" to c.clientId,
+            "lines" to lines.map(::lineMap),"status" to "PENDIENTE", "subtotalCents" to amounts.first,"taxCents" to amounts.second,
+            "totalCents" to amounts.third,"reference" to c.reference,"supplierRuc" to c.supplierRuc,"budgetCents" to (if(purchase) 0L else c.budgetCents),
+            "lastOperation" to id,"createdAt" to FieldValue.serverTimestamp())
+        tx.set(ref,if(purchase) data + mapOf("budgetPeriod" to c.budgetPeriod,"deliveryDate" to c.deliveryDate,"supplierQuote" to c.supplierQuote.trim()) else data)
+        if(quote != null) tx.update(quote.reference,mapOf("status" to "CONVERTIDA","lastOperation" to id,"updatedAt" to FieldValue.serverTimestamp()))
+    }
+    private fun state(tx: Transaction,id: String,owner: String,c: BusinessCommand) {
+        val quote = c.action == "QUOTE_STATE"
+        BusinessRules.decision(c.reason, c.responseChannel, quote)
+        val ref = db.collection(if(quote) "cotizaciones_v2" else "pedidos_v2").document(c.target)
+        val d = tx.get(ref)
+        require(d.exists() && d.getString("status") == "PENDIENTE") { "El documento ya no está pendiente. Actualiza el listado." }
+        require(c.state in (if(quote) listOf("APROBADA","RECHAZADA") else listOf("APROBADO","RECHAZADO"))) { "Estado inválido." }
+        if(!quote && c.state=="APROBADO") decodeLines(d).forEach { l ->
+            val p=tx.get(db.collection("productos").document(l.productId))
+            require((p.getLong("stock") ?: 0)>=l.quantity) { "Stock insuficiente para ${l.name}." }
+        }
+        tx.update(ref,mapOf("status" to c.state,"lastOperation" to id,"updatedAt" to FieldValue.serverTimestamp(),
+            "decisionBy" to owner,"decisionAt" to FieldValue.serverTimestamp(),"decisionReason" to c.reason.trim(),"responseChannel" to c.responseChannel))
+    }
+    private fun fulfill(tx: Transaction,id: String,owner: String,c: BusinessCommand) {
+        val purchase = c.action == "PURCHASE_RECEIVE"
+        val ref = db.collection(if(purchase) "compras_v2" else "pedidos_v2").document(c.target)
+        val d=tx.get(ref)
+        require(d.exists()) { "Documento no encontrado." }
+        require(d.getString("status") == (if(purchase) "APROBADA" else "APROBADO")) { "La operación ya fue completada o cambió de estado." }
+        val budgetRef=if(purchase) db.collection("presupuestos_compras").document(d.getString("budgetPeriod")?:error("Orden histórica: crea una orden nueva con período.")) else null
+        val budget=budgetRef?.let { tx.get(it) }
+        if(purchase) PurchaseRules.receipt(c.receiptDocument,c.receiptNotes)
+        val saleRef = db.collection("ventas_v2").document(c.target)
+        if(!purchase) require(!tx.get(saleRef).exists()) { "La venta ya existe." }
+        val lines=decodeLines(d)
+        val products=lines.map { tx.get(db.collection("productos").document(it.productId)) }
+        val movements=lines.mapIndexed { i,l -> movement(id,l.productId,l.name,if(purchase) "COMPRA" else "VENTA",products[i].getLong("stock") ?: error("Stock inexistente."),l.quantity,-1,if(purchase) "Recepción de compra" else "Confirmación de venta",owner,c.target) }
+        if(purchase) {
+            val reserved=budget!!.getLong("reservedCents")?:0
+            val spent=budget.getLong("spentCents")?:0
+            val total=d.getLong("totalCents")!!
+            require(reserved>=total) { "La reserva presupuestal no está disponible." }
+            tx.update(budgetRef!!,mapOf("reservedCents" to reserved-total,"spentCents" to spent+total,"lastOperation" to id,"lastOrder" to c.target,"updatedAt" to FieldValue.serverTimestamp()))
+            tx.set(db.collection("recepciones_v2").document(c.target),mapOf("orderId" to c.target,"operationId" to id,"receivedBy" to owner,"createdAt" to FieldValue.serverTimestamp(),"document" to c.receiptDocument.trim(),"notes" to c.receiptNotes.trim(),"lines" to lines.map(::lineMap)))
+        }
+        if(!purchase) tx.set(saleRef,d.data!!.filterKeys { it !in listOf("updatedAt","lastOperation","createdAt") } + mapOf("status" to "CONFIRMADA","reference" to c.target,"lastOperation" to id,"createdAt" to FieldValue.serverTimestamp()))
+        tx.update(ref,mapOf("status" to (if(purchase) "RECIBIDA" else "FACTURADO"),"lastOperation" to id,"updatedAt" to FieldValue.serverTimestamp()) + if(purchase) mapOf("receivedBy" to owner,"receivedAt" to FieldValue.serverTimestamp(),"receiptDocument" to c.receiptDocument.trim(),"receiptNotes" to c.receiptNotes.trim()) else emptyMap())
+        movements.forEach { m -> writeMovement(tx,id,m) }
+    }
+    private fun budget(tx:Transaction,id:String,owner:String,c:BusinessCommand) {
+        PurchaseRules.period(c.target)
+        val ref=db.collection("presupuestos_compras").document(c.target)
+        val old=tx.get(ref)
+        require(tx.get(db.collection("usuarios").document(owner)).getString("rol")=="ADMIN") { "Solo ADMIN configura el presupuesto." }
+        val reserved=old.getLong("reservedCents")?:0L; val spent=old.getLong("spentCents")?:0L
+        PurchaseRules.available(c.budgetCents,reserved,spent)
+        tx.set(ref,mapOf("totalCents" to c.budgetCents,"reservedCents" to reserved,"spentCents" to spent,"lastOperation" to id,"lastOrder" to "","updatedAt" to FieldValue.serverTimestamp()))
+    }
+    private fun purchaseState(tx:Transaction,id:String,owner:String,c:BusinessCommand) {
+        PurchaseRules.reason(c.reason)
+        val ref=db.collection("compras_v2").document(c.target); val d=tx.get(ref)
+        val status=d.getString("status")
+        require(d.exists() && ((status=="PENDIENTE" && c.state in listOf("APROBADA","RECHAZADA","CANCELADA")) || (status=="APROBADA" && c.state=="CANCELADA"))) { "Transición de compra no permitida. Actualiza." }
+        require(tx.get(db.collection("usuarios").document(owner)).getString("rol")=="ADMIN") { "Solo ADMIN autoriza o cancela compras." }
+        if(c.state=="APROBADA" || status=="APROBADA") {
+            val period=d.getString("budgetPeriod")?:error("Orden histórica: crea una nueva orden con período.")
+            val bRef=db.collection("presupuestos_compras").document(period);val b=tx.get(bRef)
+            val total=b.getLong("totalCents")?:0L;val reserved=b.getLong("reservedCents")?:0L;val spent=b.getLong("spentCents")?:0L
+            val amount=d.getLong("totalCents")!!
+            if(c.state=="APROBADA") require(PurchaseRules.available(total,reserved,spent)>=amount) { "Presupuesto insuficiente. Solicita disponibilidad a administración." }
+            val next=reserved+if(c.state=="APROBADA") amount else -amount
+            PurchaseRules.available(total,next,spent)
+            tx.update(bRef,mapOf("reservedCents" to next,"lastOperation" to id,"lastOrder" to c.target,"updatedAt" to FieldValue.serverTimestamp()))
+        }
+        tx.update(ref,mapOf("status" to c.state,"decisionBy" to owner,"decisionAt" to FieldValue.serverTimestamp(),"decisionReason" to c.reason.trim(),"responseChannel" to "INTERNO","lastOperation" to id,"updatedAt" to FieldValue.serverTimestamp()))
+    }
+    private fun manual(tx: Transaction,id: String,owner: String,c: BusinessCommand) {
+        require(c.type in listOf("ENTRADA","SALIDA","AJUSTE") && c.reason.trim().length in 5..240) { "Indica tipo y motivo (5–240 caracteres)." }
+        val p=tx.get(db.collection("productos").document(c.target))
+        require(p.exists()) { "Producto no encontrado." }
+        writeMovement(tx,id,movement(id,p.id,p.getString("nombre").orEmpty(),c.type,p.getLong("stock")!!,c.quantity,c.expectedStock,c.reason.trim(),owner,""))
+    }
+    private fun movement(id:String,p:String,name:String,type:String,before:Long,quantity:Long,expected:Long,reason:String,owner:String,source:String): Map<String,Any> = mapOf(
+        "productId" to p,"productName" to name,"type" to type,"quantity" to quantity,"beforeStock" to before,
+        "afterStock" to BusinessRules.stock(type,before,quantity,expected),"reason" to reason,"actor" to owner,"source" to source,
+        "operationId" to id,"createdAt" to FieldValue.serverTimestamp())
+    private fun writeMovement(tx:Transaction,id:String,m:Map<String,Any>) {
+        val key=id+"_"+m["productId"]
+        tx.set(db.collection("movimientos_v2").document(key),m)
+        tx.update(db.collection("productos").document(m["productId"] as String),mapOf("stock" to m["afterStock"],"lastMovement" to key,"updatedAt" to FieldValue.serverTimestamp()))
+    }
+    private fun decodeLines(d:DocumentSnapshot): List<BusinessLine> = gson.fromJson(gson.toJson(d.get("lines")),object:TypeToken<List<BusinessLine>>(){}.type)
+    private fun lineMap(l:BusinessLine) = mapOf("productId" to l.productId,"name" to l.name,"quantity" to l.quantity,"unitCents" to l.unitCents,"discountPercent" to l.discountPercent,"grossCents" to l.grossCents,"netCents" to l.netCents)
+}

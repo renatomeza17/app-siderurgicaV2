@@ -1,0 +1,383 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function verified() { return request.auth != null && request.auth.token.email_verified == true; }
+    function profile() { return get(/databases/$(database)/documents/usuarios/$(request.auth.uid)).data; }
+    function roleIn(roles) { return verified() && profile().activo == true && profile().rol in roles; }
+    function admin() { return roleIn(['ADMIN']); }
+    function validProfile(d, uid) {
+      return d.keys().hasAll(['uid', 'email', 'nombre', 'rol', 'activo', 'createdAt', 'updatedAt'])
+        && d.keys().hasOnly(['uid', 'email', 'nombre', 'rol', 'activo', 'createdAt', 'updatedAt'])
+        && d.uid == uid && d.email is string && d.nombre is string && d.nombre.size() <= 80
+        && d.rol in ['PENDIENTE', 'VENTAS', 'ALMACEN', 'RRHH', 'ADMIN'] && d.activo is bool
+        && d.createdAt is timestamp && d.updatedAt is timestamp;
+    }
+    match /usuarios/{uid} {
+      allow get: if verified() && (request.auth.uid == uid || admin());
+      allow list: if admin();
+      allow create: if verified() && request.auth.uid == uid && validProfile(request.resource.data, uid)
+        && request.resource.data.email == request.auth.token.email
+        && request.resource.data.rol == 'PENDIENTE' && request.resource.data.activo == true
+        && request.resource.data.createdAt == request.time && request.resource.data.updatedAt == request.time;
+      allow update: if verified() && validProfile(request.resource.data, uid)
+        && request.resource.data.updatedAt == request.time
+        && ((request.auth.uid == uid
+            && request.resource.data.nombre.size() >= 2
+            && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['nombre', 'updatedAt']))
+          || (admin() && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['nombre', 'rol', 'activo', 'updatedAt'])));
+      allow delete: if false;
+    }
+    match /productos/{id} {
+      allow read: if roleIn(['ADMIN', 'VENTAS', 'ALMACEN']);
+      allow create: if roleIn(['ADMIN', 'ALMACEN'])
+        && request.resource.data.keys().hasAll(['nombre', 'categoria', 'precioCentimos', 'stock', 'stockMinimo', 'createdAt'])
+        && request.resource.data.keys().hasOnly(['nombre', 'categoria', 'precioCentimos', 'stock', 'stockMinimo', 'createdAt'])
+        && request.resource.data.nombre is string && request.resource.data.nombre.size() >= 2 && request.resource.data.nombre.size() <= 120
+        && request.resource.data.categoria is string && request.resource.data.categoria.size() >= 2 && request.resource.data.categoria.size() <= 80
+        && request.resource.data.precioCentimos is int && request.resource.data.precioCentimos > 0 && request.resource.data.precioCentimos <= 100000000
+        && request.resource.data.stock is int && request.resource.data.stock >= 0 && request.resource.data.stock <= 1000000
+        && request.resource.data.stockMinimo is int && request.resource.data.stockMinimo >= 0 && request.resource.data.stockMinimo <= 1000000
+        && request.resource.data.createdAt == request.time;
+      allow update: if (roleIn(['ADMIN', 'VENTAS']) && stockApproval(id)) || (roleIn(['ADMIN', 'VENTAS', 'ALMACEN']) && v2Stock(id));
+      allow delete: if false;
+    }
+    function discount(q) { return q >= 100 ? 10 : (q >= 50 ? 7 : (q >= 10 ? 5 : 0)); }
+    function validQuote(d) {
+      let product = get(/databases/$(database)/documents/productos/$(d.productoId)).data;
+      let expectedTotal = d.subtotalCentimos * (100 - d.descuentoPorcentaje) / 100.0;
+      return d.keys().hasAll(['creatorUid', 'cliente', 'ruc', 'productoId', 'productoNombre', 'cantidad', 'precioCentimos', 'subtotalCentimos', 'descuentoPorcentaje', 'totalCentimos', 'estado', 'createdAt'])
+        && d.keys().hasOnly(['creatorUid', 'cliente', 'ruc', 'productoId', 'productoNombre', 'cantidad', 'precioCentimos', 'subtotalCentimos', 'descuentoPorcentaje', 'totalCentimos', 'estado', 'createdAt'])
+        && d.creatorUid == request.auth.uid
+        && d.cliente is string && d.cliente.size() >= 2 && d.cliente.size() <= 120
+        && d.ruc is string && (d.ruc == '' || d.ruc.matches('^[0-9]{11}$'))
+        && d.productoId is string && d.productoNombre == product.nombre
+        && d.cantidad is int && d.cantidad > 0 && d.cantidad <= 1000000
+        && d.precioCentimos == product.precioCentimos
+        && d.subtotalCentimos is int && d.subtotalCentimos == d.cantidad * d.precioCentimos
+        && d.descuentoPorcentaje is int && d.descuentoPorcentaje == discount(d.cantidad)
+        && d.totalCentimos is int && d.totalCentimos > 0
+        && d.totalCentimos > expectedTotal - 0.5 && d.totalCentimos <= expectedTotal + 0.5
+        && d.estado == 'PENDIENTE' && d.createdAt == request.time;
+    }
+    match /cotizaciones/{id} {
+      allow read: if roleIn(['ADMIN', 'VENTAS']);
+      allow create: if roleIn(['ADMIN', 'VENTAS']) && validQuote(request.resource.data);
+      allow update: if roleIn(['ADMIN', 'VENTAS']) && quoteTransition(id);
+      allow delete: if false;
+    }
+
+    function quoteTransition(id) {
+      let d = request.resource.data;
+      let before = resource.data;
+      return d.updatedBy == request.auth.uid && d.updatedAt == request.time
+        && ((before.estado == 'PENDIENTE' && d.estado in ['APROBADA', 'RECHAZADA']
+            && d.diff(before).affectedKeys().hasOnly(['estado', 'updatedAt', 'updatedBy']))
+          || (before.estado == 'APROBADA' && d.estado == 'CONVERTIDA' && d.pedidoId == id
+            && d.diff(before).affectedKeys().hasOnly(['estado', 'pedidoId', 'updatedAt', 'updatedBy'])
+            && !exists(/databases/$(database)/documents/pedidos/$(id))
+            && getAfter(/databases/$(database)/documents/pedidos/$(id)).data.cotizacionId == id));
+    }
+    function validOrderCreate(id) {
+      let d = request.resource.data;
+      let q = get(/databases/$(database)/documents/cotizaciones/$(id)).data;
+      let afterQ = getAfter(/databases/$(database)/documents/cotizaciones/$(id)).data;
+      let expectedTax = q.totalCentimos * 0.18;
+      return d.keys().hasAll(['cotizacionId', 'creatorUid', 'convertedBy', 'cliente', 'ruc', 'productoId', 'productoNombre', 'cantidad', 'precioCentimos', 'descuentoPorcentaje', 'subtotalCentimos', 'igvCentimos', 'totalCentimos', 'estado', 'createdAt'])
+        && d.keys().hasOnly(['cotizacionId', 'creatorUid', 'convertedBy', 'cliente', 'ruc', 'productoId', 'productoNombre', 'cantidad', 'precioCentimos', 'descuentoPorcentaje', 'subtotalCentimos', 'igvCentimos', 'totalCentimos', 'estado', 'createdAt'])
+        && d.cotizacionId == id && q.estado == 'APROBADA' && afterQ.estado == 'CONVERTIDA' && afterQ.pedidoId == id
+        && d.creatorUid == q.creatorUid && d.convertedBy == request.auth.uid
+        && d.cliente == q.cliente && d.ruc == q.ruc && d.productoId == q.productoId && d.productoNombre == q.productoNombre
+        && d.cantidad == q.cantidad && d.precioCentimos == q.precioCentimos && d.descuentoPorcentaje == q.descuentoPorcentaje
+        && d.subtotalCentimos == q.totalCentimos && d.igvCentimos is int
+        && d.igvCentimos > expectedTax - 0.5 && d.igvCentimos <= expectedTax + 0.5
+        && d.totalCentimos == d.subtotalCentimos + d.igvCentimos && d.estado == 'PENDIENTE' && d.createdAt == request.time;
+    }
+    function stockApproval(productId) {
+      let d = request.resource.data;
+      let beforeOrder = get(/databases/$(database)/documents/pedidos/$(d.ultimoPedidoId)).data;
+      let afterOrder = getAfter(/databases/$(database)/documents/pedidos/$(d.ultimoPedidoId)).data;
+      return d.diff(resource.data).affectedKeys().hasOnly(['stock', 'ultimoPedidoId', 'updatedAt'])
+        && d.updatedAt == request.time && d.stock is int && d.stock >= 0
+        && beforeOrder.estado == 'PENDIENTE' && afterOrder.estado == 'APROBADO'
+        && beforeOrder.productoId == productId && d.stock == resource.data.stock - beforeOrder.cantidad;
+    }
+    function orderTransition(id) {
+      let d = request.resource.data;
+      let b = resource.data;
+      return d.updatedBy == request.auth.uid && d.updatedAt == request.time
+        && ((b.estado == 'PENDIENTE' && d.estado in ['RECHAZADO', 'ANULADO']
+              && d.diff(b).affectedKeys().hasOnly(['estado', 'updatedBy', 'updatedAt']))
+          || (b.estado == 'PENDIENTE' && d.estado == 'APROBADO'
+              && d.diff(b).affectedKeys().hasOnly(['estado', 'updatedBy', 'updatedAt'])
+              && getAfter(/databases/$(database)/documents/productos/$(b.productoId)).data.ultimoPedidoId == id
+              && getAfter(/databases/$(database)/documents/productos/$(b.productoId)).data.stock
+                == get(/databases/$(database)/documents/productos/$(b.productoId)).data.stock - b.cantidad
+              && getAfter(/databases/$(database)/documents/productos/$(b.productoId)).data.stock >= 0)
+          || (b.estado == 'APROBADO' && d.estado == 'FACTURADO' && d.ventaId == id
+              && d.diff(b).affectedKeys().hasOnly(['estado', 'ventaId', 'updatedBy', 'updatedAt'])
+              && !exists(/databases/$(database)/documents/ventas/$(id))
+              && getAfter(/databases/$(database)/documents/ventas/$(id)).data.pedidoId == id));
+    }
+    function validSale(id) {
+      let d = request.resource.data;
+      let o = get(/databases/$(database)/documents/pedidos/$(id)).data;
+      let afterO = getAfter(/databases/$(database)/documents/pedidos/$(id)).data;
+      return d.keys().hasAll(['pedidoId', 'createdBy', 'creatorUid', 'cliente', 'ruc', 'productoId', 'productoNombre', 'cantidad', 'subtotalCentimos', 'igvCentimos', 'totalCentimos', 'estado', 'createdAt'])
+        && d.keys().hasOnly(['pedidoId', 'createdBy', 'creatorUid', 'cliente', 'ruc', 'productoId', 'productoNombre', 'cantidad', 'subtotalCentimos', 'igvCentimos', 'totalCentimos', 'estado', 'createdAt'])
+        && d.pedidoId == id && o.estado == 'APROBADO' && afterO.estado == 'FACTURADO' && afterO.ventaId == id
+        && d.createdBy == request.auth.uid && d.creatorUid == o.creatorUid
+        && d.cliente == o.cliente && d.ruc == o.ruc && d.productoId == o.productoId && d.productoNombre == o.productoNombre
+        && d.cantidad == o.cantidad && d.subtotalCentimos == o.subtotalCentimos && d.igvCentimos == o.igvCentimos && d.totalCentimos == o.totalCentimos
+        && d.estado == 'PENDIENTE' && d.createdAt == request.time;
+    }
+    match /pedidos/{id} {
+      allow read: if roleIn(['ADMIN', 'VENTAS']);
+      allow create: if roleIn(['ADMIN', 'VENTAS']) && validOrderCreate(id);
+      allow update: if roleIn(['ADMIN', 'VENTAS']) && orderTransition(id);
+      allow delete: if false;
+    }
+    match /ventas/{id} {
+      allow read: if roleIn(['ADMIN', 'VENTAS']);
+      allow create: if roleIn(['ADMIN', 'VENTAS']) && validSale(id);
+      allow update, delete: if false;
+    }
+
+    match /proveedores/{ruc} {
+      allow read: if roleIn(['ADMIN', 'ALMACEN']);
+      allow create: if roleIn(['ADMIN', 'ALMACEN'])
+        && request.resource.data.keys().hasAll(['ruc', 'nombre', 'direccion', 'contacto', 'telefono', 'creatorUid', 'operationId', 'createdAt'])
+        && request.resource.data.keys().hasOnly(['ruc', 'nombre', 'direccion', 'contacto', 'telefono', 'creatorUid', 'operationId', 'createdAt'])
+        && ruc.matches('^(10|15|16|17|20)[0-9]{9}$') && request.resource.data.ruc == ruc
+        && request.resource.data.nombre is string && request.resource.data.nombre.size() >= 2 && request.resource.data.nombre.size() <= 160
+        && request.resource.data.direccion is string && request.resource.data.direccion.size() <= 240
+        && request.resource.data.contacto is string && request.resource.data.contacto.size() <= 80
+        && request.resource.data.telefono is string && request.resource.data.telefono.size() <= 30
+        && request.resource.data.creatorUid == request.auth.uid
+        && request.resource.data.operationId is string && request.resource.data.operationId.size() == 36
+        && request.resource.data.createdAt == request.time;
+      allow update, delete: if false;
+    }
+    match /documentos/{uid}/items/{id} {
+      allow read: if roleIn(['ADMIN', 'ALMACEN']) && request.auth.uid == uid;
+      allow create: if roleIn(['ADMIN', 'ALMACEN']) && request.auth.uid == uid
+        && request.resource.data.keys().hasAll(['ownerUid', 'ruc', 'numero', 'fecha', 'montoCentimos', 'codigo', 'storagePath', 'createdAt'])
+        && request.resource.data.keys().hasOnly(['ownerUid', 'ruc', 'numero', 'fecha', 'montoCentimos', 'codigo', 'storagePath', 'createdAt'])
+        && request.resource.data.ownerUid == uid
+        && request.resource.data.ruc is string && (request.resource.data.ruc == '' || request.resource.data.ruc.matches('^(10|15|16|17|20)[0-9]{9}$'))
+        && request.resource.data.numero is string && request.resource.data.numero.size() >= 1 && request.resource.data.numero.size() <= 80
+        && request.resource.data.fecha is string && request.resource.data.fecha.matches('^[0-9]{2}/[0-9]{2}/[0-9]{4}$')
+        && request.resource.data.montoCentimos is int && request.resource.data.montoCentimos >= 0 && request.resource.data.montoCentimos <= 100000000000
+        && request.resource.data.codigo is string && request.resource.data.codigo.size() <= 4000
+        && (request.resource.data.montoCentimos > 0 || request.resource.data.codigo.size() > 0)
+        && request.resource.data.storagePath == 'usuarios/' + uid + '/documentos/' + id + '.jpg'
+        && request.resource.data.createdAt == request.time;
+      allow update, delete: if false;
+    }
+
+    // Version 2 is isolated from the immutable, single-product commercial history.
+    function v2Round(value, exact) { return value is int && value > exact - 0.5 && value <= exact + 0.5; }
+    function v2Line(l, purchase, accepted) {
+      let p = get(/databases/$(database)/documents/productos/$(l.productId)).data;
+      let quantity = l.quantity;
+      let price = l.unitCents;
+      let percent = l.discountPercent;
+      let gross = l.grossCents;
+      return l.keys().hasOnly(['productId','name','quantity','unitCents','discountPercent','grossCents','netCents'])
+        && l.productId is string && l.name == p.nombre
+        && quantity is int && quantity > 0 && quantity <= 1000000
+        && price is int && price > 0 && price <= 100000000
+        && (purchase || accepted || price == p.precioCentimos)
+        && percent is int && (purchase ? percent == 0 : (accepted ? (percent >= 0 && percent <= 30) : percent == discount(quantity)))
+        && gross == quantity * price
+        && v2Round(l.netCents,gross * (100-percent) / 100.0);
+    }
+    function v2Lines(d, purchase, accepted) {
+      let lines = d.lines;
+      let count = lines.size();
+      let first = lines[0];
+      let second = count > 1 ? lines[1] : first;
+      let third = count > 2 ? lines[2] : first;
+      return lines is list && count >= 1 && count <= 3
+        && v2Line(first,purchase,accepted)
+        && (count < 2 || (v2Line(second,purchase,accepted) && first.productId != second.productId))
+        && (count < 3 || (v2Line(third,purchase,accepted) && third.productId != first.productId && third.productId != second.productId))
+        && d.subtotalCents == first.netCents + (count>1 ? second.netCents : 0) + (count>2 ? third.netCents : 0)
+        && v2Round(d.taxCents,d.subtotalCents*0.18) && d.totalCents == d.subtotalCents+d.taxCents;
+    }
+    function v2Base(d,purchase,accepted) {
+      return d.keys().hasAll(['owner','client','ruc','clientId','lines','status','subtotalCents','taxCents','totalCents','reference','supplierRuc','budgetCents','lastOperation','createdAt'])
+        && d.keys().hasOnly(['owner','client','ruc','clientId','lines','status','subtotalCents','taxCents','totalCents','reference','supplierRuc','budgetCents','lastOperation','createdAt'])
+        && d.owner == request.auth.uid && d.status == 'PENDIENTE' && d.createdAt == request.time
+        && d.lastOperation is string && d.lastOperation.size() == 36
+        && d.client is string && d.client.size() >= 2 && d.client.size() <= 160
+        && d.ruc is string && d.reference is string && d.supplierRuc is string && d.budgetCents is int
+        && (purchase || (d.client == get(/databases/$(database)/documents/clientes_v2/$(d.clientId)).data.name
+          && d.ruc == get(/databases/$(database)/documents/clientes_v2/$(d.clientId)).data.ruc))
+        && d.subtotalCents is int && d.taxCents is int && d.totalCents is int
+        && v2Lines(d,purchase,accepted);
+    }
+    function v2Available(l) { return get(/databases/$(database)/documents/productos/$(l.productId)).data.stock >= l.quantity; }
+    function v2AllAvailable(d) { return v2Available(d.lines[0]) && (d.lines.size()<2 || v2Available(d.lines[1])) && (d.lines.size()<3 || v2Available(d.lines[2])); }
+    function v2State(d,b) { return d.diff(b).affectedKeys().hasOnly(['status','lastOperation','updatedAt']) && d.updatedAt==request.time && d.lastOperation is string && d.lastOperation.size()==36; }
+
+    function v2Decision(d,b,quote) {
+      return d.diff(b).affectedKeys().hasOnly(['status','lastOperation','updatedAt','decisionBy','decisionAt','decisionReason','responseChannel'])
+        && d.updatedAt==request.time && d.lastOperation is string && d.lastOperation.size()==36
+        && d.decisionBy==request.auth.uid && d.decisionAt==request.time
+        && d.decisionReason is string && d.decisionReason.size()>=5 && d.decisionReason.size()<=240
+        && (quote ? d.responseChannel in ['LLAMADA','WHATSAPP','CORREO','PRESENCIAL','OTRO'] : d.responseChannel=='INTERNO');
+    }
+    match /clientes_v2/{id} {
+      allow read: if roleIn(['ADMIN','VENTAS']);
+      allow create: if roleIn(['ADMIN','VENTAS'])
+        && request.resource.data.keys().hasOnly(['owner','name','ruc','createdAt'])
+        && request.resource.data.owner == request.auth.uid && request.resource.data.createdAt == request.time
+        && request.resource.data.name is string && request.resource.data.name.size()>=2 && request.resource.data.name.size()<=120
+        && request.resource.data.ruc is string && (request.resource.data.ruc == '' || (request.resource.data.ruc.matches('^(10|15|16|17|20)[0-9]{9}$') && id==request.resource.data.ruc));
+      allow update,delete: if false;
+    }
+    match /operaciones_v2/{id} {
+      allow get: if roleIn(['ADMIN','VENTAS','ALMACEN']) && (!exists(/databases/$(database)/documents/operaciones_v2/$(id)) || resource.data.owner==request.auth.uid);
+      allow create: if roleIn(['ADMIN','VENTAS','ALMACEN']) && id.size()==36
+        && request.resource.data.keys().hasOnly(['owner','action','target','payload','createdAt'])
+        && request.resource.data.owner==request.auth.uid && request.resource.data.createdAt==request.time
+        && request.resource.data.action in ['CLIENT_CREATE','QUOTE_CREATE','QUOTE_STATE','ORDER_CREATE','ORDER_STATE','SALE_CREATE','PURCHASE_CREATE','PURCHASE_RECEIVE','MOVEMENT']
+        && request.resource.data.target is string && request.resource.data.payload is string && request.resource.data.payload.size()<=20000;
+      allow update,delete,list: if false;
+    }
+    match /cotizaciones_v2/{id} {
+      allow read: if roleIn(['ADMIN','VENTAS']);
+      allow create: if roleIn(['ADMIN','VENTAS']) && id==request.resource.data.lastOperation && v2Base(request.resource.data,false,false)
+        && request.resource.data.reference=='' && request.resource.data.supplierRuc=='' && request.resource.data.budgetCents==0;
+      allow update: if roleIn(['ADMIN','VENTAS'])
+        && ((resource.data.status=='PENDIENTE' && request.resource.data.status in ['APROBADA','RECHAZADA']
+            && v2Decision(request.resource.data,resource.data,true))
+          || (resource.data.status=='APROBADA' && request.resource.data.status=='CONVERTIDA' && v2State(request.resource.data,resource.data)
+            && !exists(/databases/$(database)/documents/pedidos_v2/$(id))
+            && getAfter(/databases/$(database)/documents/pedidos_v2/$(id)).data.reference==id
+            && getAfter(/databases/$(database)/documents/pedidos_v2/$(id)).data.lastOperation==request.resource.data.lastOperation));
+      allow delete: if false;
+    }
+    function v2OrderCreate(id,d) {
+      return v2Base(d,false,d.reference!='') && d.supplierRuc=='' && d.budgetCents==0 && v2AllAvailable(d)
+        && ((d.reference=='' && id==d.lastOperation)
+          || (d.reference==id && get(/databases/$(database)/documents/cotizaciones_v2/$(id)).data.status=='APROBADA'
+            && getAfter(/databases/$(database)/documents/cotizaciones_v2/$(id)).data.status=='CONVERTIDA'
+            && d.lines==get(/databases/$(database)/documents/cotizaciones_v2/$(id)).data.lines
+            && d.clientId==get(/databases/$(database)/documents/cotizaciones_v2/$(id)).data.clientId
+            && d.lastOperation==getAfter(/databases/$(database)/documents/cotizaciones_v2/$(id)).data.lastOperation));
+    }
+    match /pedidos_v2/{id} {
+      allow read: if roleIn(['ADMIN','VENTAS']);
+      allow create: if roleIn(['ADMIN','VENTAS']) && v2OrderCreate(id,request.resource.data);
+      allow update: if roleIn(['ADMIN','VENTAS'])
+        && ((resource.data.status=='PENDIENTE' && request.resource.data.status=='RECHAZADO' && v2Decision(request.resource.data,resource.data,false))
+          || (resource.data.status=='PENDIENTE' && request.resource.data.status=='APROBADO' && v2AllAvailable(resource.data) && v2Decision(request.resource.data,resource.data,false))
+          || (resource.data.status=='APROBADO' && request.resource.data.status=='FACTURADO' && v2State(request.resource.data,resource.data)
+            && !exists(/databases/$(database)/documents/ventas_v2/$(id))
+            && getAfter(/databases/$(database)/documents/ventas_v2/$(id)).data.reference==id
+            && getAfter(/databases/$(database)/documents/ventas_v2/$(id)).data.lastOperation==request.resource.data.lastOperation));
+      allow delete: if false;
+    }
+    function v2LinkedMovement(l,d,type) {
+      let m=getAfter(/databases/$(database)/documents/movimientos_v2/$(d.lastOperation + '_' + l.productId)).data;
+      return m.type==type && m.source==d.reference && m.operationId==d.lastOperation && m.quantity==l.quantity && m.productId==l.productId;
+    }
+    function v2AllMovements(d,type) { return v2LinkedMovement(d.lines[0],d,type) && (d.lines.size()<2 || v2LinkedMovement(d.lines[1],d,type)) && (d.lines.size()<3 || v2LinkedMovement(d.lines[2],d,type)); }
+    match /ventas_v2/{id} {
+      allow read: if roleIn(['ADMIN','VENTAS']);
+      allow create: if roleIn(['ADMIN','VENTAS'])
+        && request.resource.data.diff(get(/databases/$(database)/documents/pedidos_v2/$(id)).data).affectedKeys().hasOnly(['status','reference','lastOperation','createdAt','updatedAt'])
+        && !request.resource.data.keys().hasAny(['updatedAt'])
+        && request.resource.data.status=='CONFIRMADA' && request.resource.data.reference==id && request.resource.data.createdAt==request.time
+        && get(/databases/$(database)/documents/pedidos_v2/$(id)).data.status=='APROBADO'
+        && getAfter(/databases/$(database)/documents/pedidos_v2/$(id)).data.status=='FACTURADO'
+        && getAfter(/databases/$(database)/documents/pedidos_v2/$(id)).data.lastOperation==request.resource.data.lastOperation
+        && v2AllMovements(request.resource.data,'VENTA');
+      allow update,delete: if false;
+    }
+    function v2PurchaseMovement(l,d,id) {
+      let m=getAfter(/databases/$(database)/documents/movimientos_v2/$(d.lastOperation + '_' + l.productId)).data;
+      return m.type=='COMPRA' && m.source==id && m.operationId==d.lastOperation && m.quantity==l.quantity && m.productId==l.productId;
+    }
+    match /compras_v2/{id} {
+      allow read: if roleIn(['ADMIN','ALMACEN']);
+      allow create: if roleIn(['ADMIN','ALMACEN']) && id==request.resource.data.lastOperation && v2Base(request.resource.data,true,false)
+        && request.resource.data.clientId=='' && request.resource.data.reference==''
+        && request.resource.data.ruc==request.resource.data.supplierRuc
+        && request.resource.data.client==get(/databases/$(database)/documents/proveedores/$(request.resource.data.supplierRuc)).data.nombre
+        && request.resource.data.budgetCents>=request.resource.data.totalCents && request.resource.data.budgetCents<=400000000000000;
+      allow update: if roleIn(['ADMIN','ALMACEN']) && v2State(request.resource.data,resource.data)
+        && resource.data.status=='PENDIENTE' && request.resource.data.status=='RECIBIDA'
+        && v2PurchaseMovement(resource.data.lines[0],request.resource.data,id)
+        && (resource.data.lines.size()<2 || v2PurchaseMovement(resource.data.lines[1],request.resource.data,id))
+        && (resource.data.lines.size()<3 || v2PurchaseMovement(resource.data.lines[2],request.resource.data,id));
+      allow delete: if false;
+    }
+    function v2SourceLine(lines,m) {
+      return (lines[0].productId==m.productId && lines[0].quantity==m.quantity)
+        || (lines.size()>1 && lines[1].productId==m.productId && lines[1].quantity==m.quantity)
+        || (lines.size()>2 && lines[2].productId==m.productId && lines[2].quantity==m.quantity);
+    }
+    function v2MovementSource(m) {
+      return (m.type in ['ENTRADA','SALIDA','AJUSTE'] && m.source=='' && roleIn(['ADMIN','ALMACEN']))
+        || (m.type=='VENTA' && roleIn(['ADMIN','VENTAS'])
+          && !exists(/databases/$(database)/documents/ventas_v2/$(m.source))
+          && getAfter(/databases/$(database)/documents/ventas_v2/$(m.source)).data.lastOperation==m.operationId
+          && v2SourceLine(getAfter(/databases/$(database)/documents/ventas_v2/$(m.source)).data.lines,m))
+        || (m.type=='COMPRA' && roleIn(['ADMIN','ALMACEN'])
+          && get(/databases/$(database)/documents/compras_v2/$(m.source)).data.status=='PENDIENTE'
+          && getAfter(/databases/$(database)/documents/compras_v2/$(m.source)).data.status=='RECIBIDA'
+          && getAfter(/databases/$(database)/documents/compras_v2/$(m.source)).data.lastOperation==m.operationId
+          && v2SourceLine(getAfter(/databases/$(database)/documents/compras_v2/$(m.source)).data.lines,m));
+    }
+    match /movimientos_v2/{id} {
+      allow read: if roleIn(['ADMIN','ALMACEN']);
+      allow create: if roleIn(['ADMIN','VENTAS','ALMACEN'])
+        && request.resource.data.keys().hasOnly(['productId','productName','type','quantity','beforeStock','afterStock','reason','actor','source','operationId','createdAt'])
+        && id==request.resource.data.operationId+'_'+request.resource.data.productId
+        && request.resource.data.actor==request.auth.uid && request.resource.data.createdAt==request.time
+        && request.resource.data.operationId is string && request.resource.data.operationId.size()==36
+        && request.resource.data.reason is string && request.resource.data.reason.size()>=5 && request.resource.data.reason.size()<=240
+        && request.resource.data.productName==get(/databases/$(database)/documents/productos/$(request.resource.data.productId)).data.nombre
+        && request.resource.data.quantity is int && request.resource.data.quantity>=0 && request.resource.data.quantity<=1000000
+        && (request.resource.data.type=='AJUSTE' || request.resource.data.quantity>0)
+        && request.resource.data.beforeStock==get(/databases/$(database)/documents/productos/$(request.resource.data.productId)).data.stock
+        && request.resource.data.afterStock is int && request.resource.data.afterStock>=0 && request.resource.data.afterStock<=1000000
+        && ((request.resource.data.type in ['ENTRADA','COMPRA'] && request.resource.data.afterStock==request.resource.data.beforeStock+request.resource.data.quantity)
+          || (request.resource.data.type in ['SALIDA','VENTA'] && request.resource.data.afterStock==request.resource.data.beforeStock-request.resource.data.quantity)
+          || (request.resource.data.type=='AJUSTE' && request.resource.data.afterStock==request.resource.data.quantity))
+        && getAfter(/databases/$(database)/documents/productos/$(request.resource.data.productId)).data.lastMovement==id
+        && getAfter(/databases/$(database)/documents/productos/$(request.resource.data.productId)).data.stock==request.resource.data.afterStock
+        && v2MovementSource(request.resource.data);
+      allow update,delete: if false;
+    }
+    function v2Stock(id) {
+      let d=request.resource.data;
+      let m=getAfter(/databases/$(database)/documents/movimientos_v2/$(d.lastMovement)).data;
+      return d.diff(resource.data).affectedKeys().hasOnly(['stock','lastMovement','updatedAt']) && d.updatedAt==request.time
+        && !exists(/databases/$(database)/documents/movimientos_v2/$(d.lastMovement))
+        && m.productId==id && m.beforeStock==resource.data.stock && m.afterStock==d.stock && m.actor==request.auth.uid;
+    }
+    match /usuarios/{uid}/dispositivos/{id} {
+      allow read,delete: if roleIn(['ADMIN','ALMACEN']) && uid==request.auth.uid;
+      allow create,update: if roleIn(['ADMIN','ALMACEN']) && uid==request.auth.uid && id.size()==36
+        && request.resource.data.keys().hasOnly(['token','updatedAt'])
+        && request.resource.data.token is string && request.resource.data.token.size()>20 && request.resource.data.token.size()<=4096
+        && request.resource.data.updatedAt==request.time;
+    }
+    match /comprobantes_v2/{uid}/items/{id} {
+      allow read: if roleIn(['ADMIN','VENTAS']) && uid==request.auth.uid;
+      allow create: if roleIn(['ADMIN','VENTAS']) && uid==request.auth.uid
+        && request.resource.data.keys().hasOnly(['saleId','type','storagePath','createdAt'])
+        && request.resource.data.type in ['BOLETA','FACTURA'] && id==request.resource.data.saleId+'_'+request.resource.data.type
+        && request.resource.data.storagePath=='usuarios/'+uid+'/comprobantes/'+id+'.pdf'
+        && get(/databases/$(database)/documents/ventas_v2/$(request.resource.data.saleId)).data.status=='CONFIRMADA'
+        && (request.resource.data.type!='FACTURA' || get(/databases/$(database)/documents/ventas_v2/$(request.resource.data.saleId)).data.ruc.matches('^(10|15|16|17|20)[0-9]{9}$'))
+        && request.resource.data.createdAt==request.time;
+      allow update,delete: if false;
+    }
+
+    match /{document=**} { allow read, write: if false; }
+  }
+}

@@ -1,0 +1,218 @@
+i  emulators: Starting emulators: firestore, storage
+i  emulators: Detected demo project ID "demo-siderurgica", emulated services will use a demo configuration and attempts to access non-emulated services for this project will fail.
+i  firestore: Firestore Emulator logging to firestore-debug.log
++  firestore: Firestore Emulator UI websocket is running on 9150.
+i  Running script: npm --prefix rules-tests test
+
+> test
+> node --test --test-concurrency=1 rules.test.mjs sprints.test.mjs
+
+[2026-10-17T07:48:52.416Z]  @firebase/firestore: Firestore (11.1.0): GrpcConnection RPC 'Write' stream 0x21fce4d7 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+evaluation error at L18:24 for 'create' @ L18, false for 'create' @ L441, evaluation error at L22:24 for 'update' @ L22, false for 'update' @ L441, false for 'create' @ L18, false for 'create' @ L441
+[2026-10-17T07:48:52.512Z]  @firebase/firestore: Firestore (11.1.0): GrpcConnection RPC 'Write' stream 0x21fce4d8 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+evaluation error at L22:24 for 'update' @ L22, false for 'update' @ L441, false for 'update' @ L22, false for 'update' @ L441
+✔ new verified user can only create own pending profile (3678.0788ms)
+[2026-10-17T07:48:52.659Z]  @firebase/firestore: Firestore (11.1.0): GrpcConnection RPC 'Write' stream 0x21fce4da error. Code: 7 Message: 7 PERMISSION_DENIED: 
+evaluation error at L22:24 for 'update' @ L22, false for 'update' @ L441, false for 'update' @ L22, false for 'update' @ L441
+[2026-10-17T07:48:52.748Z]  @firebase/firestore: Firestore (11.1.0): GrpcConnection RPC 'Write' stream 0x21fce4dc error. Code: 7 Message: 7 PERMISSION_DENIED: 
+evaluation error at L22:24 for 'update' @ L22, false for 'update' @ L441, false for 'update' @ L22, false for 'update' @ L441
+✔ profile permissions enforce identity and immutable fields (286.0152ms)
+✔ unverified, pending, inactive and anonymous accounts cannot read business data (239.7102ms)
+[2026-10-17T07:48:53.177Z]  @firebase/firestore: Firestore (11.1.0): GrpcConnection RPC 'Write' stream 0x21fce4e6 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+evaluation error at L32:24 for 'create' @ L32, false for 'create' @ L441, evaluation error at L41:24 for 'update' @ L41, false for 'update' @ L441, false for 'create' @ L32, false for 'create' @ L441
+[2026-10-17T07:48:53.215Z]  @firebase/firestore: Firestore (11.1.0): GrpcConnection RPC 'Write' stream 0x21fce4e7 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+evaluation error at L41:24 for 'update' @ L41, false for 'update' @ L441, Property updatedAt is undefined on object. for 'update' @ L41, false for 'update' @ L441
+✔ warehouse creates products but sales cannot create or change stock (175.1552ms)
+[2026-10-17T07:48:53.324Z]  @firebase/firestore: Firestore (11.1.0): GrpcConnection RPC 'Write' stream 0x21fce4e9 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+evaluation error at L64:24 for 'create' @ L64, false for 'create' @ L441, evaluation error at L65:24 for 'update' @ L65, false for 'update' @ L441, false for 'create' @ L64, false for 'create' @ L441
+[2026-10-17T07:48:53.348Z]  @firebase/firestore: Firestore (11.1.0): GrpcConnection RPC 'Write' stream 0x21fce4ea error. Code: 7 Message: 7 PERMISSION_DENIED: 
+evaluation error at L64:24 for 'create' @ L64, false for 'create' @ L441, evaluation error at L65:24 for 'update' @ L65, false for 'update' @ L441, false for 'create' @ L64, false for 'create' @ L441
+[2026-10-17T07:48:53.385Z]  @firebase/firestore: Firestore (11.1.0): GrpcConnection RPC 'Write' stream 0x21fce4eb error. Code: 7 Message: 7 PERMISSION_DENIED: 
+evaluation error at L64:24 for 'create' @ L64, false for 'create' @ L441, evaluation error at L65:24 for 'update' @ L65, false for 'update' @ L441, false for 'create' @ L64, false for 'create' @ L441
+[2026-10-17T07:48:53.421Z]  @firebase/firestore: Firestore (11.1.0): GrpcConnection RPC 'Write' stream 0x21fce4ec error. Code: 7 Message: 7 PERMISSION_DENIED: 
+evaluation error at L64:24 for 'create' @ L64, false for 'create' @ L441, evaluation error at L65:24 for 'update' @ L65, false for 'update' @ L441, false for 'create' @ L64, false for 'create' @ L441
+[2026-10-17T07:48:53.444Z]  @firebase/firestore: Firestore (11.1.0): GrpcConnection RPC 'Write' stream 0x21fce4ed error. Code: 7 Message: 7 PERMISSION_DENIED: 
+evaluation error at L64:24 for 'create' @ L64, false for 'create' @ L441, evaluation error at L65:24 for 'update' @ L65, false for 'update' @ L441, false for 'create' @ L64, false for 'create' @ L441
+[2026-10-17T07:48:53.467Z]  @firebase/firestore: Firestore (11.1.0): GrpcConnection RPC 'Write' stream 0x21fce4ee error. Code: 7 Message: 7 PERMISSION_DENIED: 
+evaluation error at L64:24 for 'create' @ L64, false for 'create' @ L441, evaluation error at L65:24 for 'update' @ L65, false for 'update' @ L441, false for 'create' @ L64, false for 'create' @ L441
+[2026-10-17T07:48:53.505Z]  @firebase/firestore: Firestore (11.1.0): GrpcConnection RPC 'Write' stream 0x21fce4ef error. Code: 7 Message: 7 PERMISSION_DENIED: 
+evaluation error at L64:24 for 'create' @ L64, false for 'create' @ L441, evaluation error at L65:24 for 'update' @ L65, false for 'update' @ L441, false for 'create' @ L64, false for 'create' @ L441
+[2026-10-17T07:48:53.528Z]  @firebase/firestore: Firestore (11.1.0): GrpcConnection RPC 'Write' stream 0x21fce4f0 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+evaluation error at L65:24 for 'update' @ L65, false for 'update' @ L441, Property updatedBy is undefined on object. for 'update' @ L65, false for 'update' @ L441
+✔ quote creation enforces creator, price, discount, total and immutable state (313.2769ms)
+[2026-10-17T07:48:53.637Z]  @firebase/firestore: Firestore (11.1.0): GrpcConnection RPC 'Write' stream 0x21fce4f2 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'create' @ L141, false for 'create' @ L441, false for 'update' @ L142, false for 'update' @ L441
+✔ unknown collections are closed (111.6654ms)
+[2026-10-17T07:48:53.751Z]  @firebase/firestore: Firestore (11.1.0): GrpcConnection RPC 'Write' stream 0x21fce4f4 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+evaluation error at L65:24 for 'update' @ L65, false for 'update' @ L441, false for 'update' @ L65, false for 'update' @ L441
+[2026-10-17T07:48:53.796Z]  @firebase/firestore: Firestore (11.1.0): GrpcConnection RPC 'Write' stream 0x21fce4f5 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+evaluation error at L65:24 for 'update' @ L65, false for 'update' @ L441, Service call error. Function: [getAfter], Argument: [path_value {
+  segments {
+    simple: "databases"
+  }
+  segments {
+    simple: "(default)"
+  }
+  segments {
+    simple: "documents"
+  }
+  segments {
+    simple: "pedidos"
+  }
+  segments {
+    simple: "alone"
+  }
+}
+]. for 'update' @ L65, false for 'update' @ L441
+[2026-10-17T07:48:53.939Z]  @firebase/firestore: Firestore (11.1.0): GrpcConnection RPC 'Write' stream 0x21fce4f6 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+evaluation error at L135:24 for 'create' @ L135, false for 'create' @ L441, evaluation error at L136:24 for 'update' @ L136, false for 'update' @ L441, false for 'create' @ L135, false for 'create' @ L441
+[2026-10-17T07:48:53.966Z]  @firebase/firestore: Firestore (11.1.0): GrpcConnection RPC 'Write' stream 0x21fce4f8 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+evaluation error at L136:24 for 'update' @ L136, false for 'update' @ L441, false for 'update' @ L136, false for 'update' @ L441
+✔ conversion requires approved quote and atomic paired writes; discount is preserved (325.5543ms)
+[2026-10-17T07:48:54.125Z]  @firebase/firestore: Firestore (11.1.0): GrpcConnection RPC 'Write' stream 0x21fce4fa error. Code: 7 Message: 7 PERMISSION_DENIED: 
+evaluation error at L136:24 for 'update' @ L136, false for 'update' @ L441, false for 'update' @ L136, false for 'update' @ L441
+[2026-10-17T07:48:54.148Z]  @firebase/firestore: Firestore (11.1.0): GrpcConnection RPC 'Write' stream 0x21fce4fb error. Code: 7 Message: 7 PERMISSION_DENIED: 
+evaluation error at L41:24 for 'update' @ L41, false for 'update' @ L441, false for 'update' @ L41, false for 'update' @ L441
+[2026-10-17T07:48:54.311Z]  @firebase/firestore: Firestore (11.1.0): GrpcConnection RPC 'Write' stream 0x21fce502 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+evaluation error at L41:24 for 'update' @ L41, false for 'update' @ L441, Property lastMovement is undefined on object. for 'update' @ L41, false for 'update' @ L441
+[2026-10-17T07:48:54.338Z]  @firebase/firestore: Firestore (11.1.0): GrpcConnection RPC 'Write' stream 0x21fce503 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+evaluation error at L136:24 for 'update' @ L136, false for 'update' @ L441, false for 'update' @ L136, false for 'update' @ L441
+✔ approval and stock change must be atomic and cannot be replayed (372.4978ms)
+✔ two concurrent approvals cannot oversell the same product (240.8896ms)
+[2026-10-17T07:48:54.697Z]  @firebase/firestore: Firestore (11.1.0): GrpcConnection RPC 'Write' stream 0x21fce50e error. Code: 7 Message: 7 PERMISSION_DENIED: 
+evaluation error at L136:24 for 'update' @ L136, false for 'update' @ L441, false for 'update' @ L136, false for 'update' @ L441
+✔ pending rejection cannot modify stock or return to approval (127.7394ms)
+[2026-10-17T07:48:54.811Z]  @firebase/firestore: Firestore (11.1.0): GrpcConnection RPC 'Write' stream 0x21fce511 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+evaluation error at L141:24 for 'create' @ L141, false for 'create' @ L441, false for 'update' @ L142, false for 'update' @ L441, false for 'create' @ L141, false for 'create' @ L441
+[2026-10-17T07:48:54.867Z]  @firebase/firestore: Firestore (11.1.0): GrpcConnection RPC 'Write' stream 0x21fce515 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+evaluation error at L141:24 for 'create' @ L141, false for 'create' @ L441, false for 'update' @ L142, false for 'update' @ L441, false for 'create' @ L141, false for 'create' @ L441
+[2026-10-17T07:48:54.883Z]  @firebase/firestore: Firestore (11.1.0): GrpcConnection RPC 'Write' stream 0x21fce516 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+evaluation error at L141:24 for 'create' @ L141, false for 'create' @ L441, false for 'update' @ L142, false for 'update' @ L441, evaluation error at L136:24 for 'update' @ L136, false for 'update' @ L441, false for 'create' @ L141, false for 'create' @ L441
+[2026-10-17T07:48:54.945Z]  @firebase/firestore: Firestore (11.1.0): GrpcConnection RPC 'Write' stream 0x21fce517 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+evaluation error at L141:24 for 'create' @ L141, false for 'create' @ L441, false for 'update' @ L142, false for 'update' @ L441, false for 'create' @ L141, false for 'create' @ L441
+[2026-10-17T07:48:54.960Z]  @firebase/firestore: Firestore (11.1.0): GrpcConnection RPC 'Write' stream 0x21fce519 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'update' @ L142, false for 'update' @ L441
+✔ sale requires approved order, atomic invoicing, matching amounts and unique order ID (252.3783ms)
+[2026-10-17T07:48:55.079Z]  @firebase/firestore: Firestore (11.1.0): GrpcConnection RPC 'Write' stream 0x21fce51c error. Code: 7 Message: 7 PERMISSION_DENIED: 
+evaluation error at L136:24 for 'update' @ L136, false for 'update' @ L441, false for 'update' @ L136, false for 'update' @ L441
+✔ warehouse and pending users cannot perform commercial transitions (149.2962ms)
+[2026-10-17T07:48:55.174Z]  @firebase/firestore: Firestore (11.1.0): GrpcConnection RPC 'Write' stream 0x21fce51f error. Code: 7 Message: 7 PERMISSION_DENIED: 
+evaluation error at L147:24 for 'create' @ L147, false for 'create' @ L441, false for 'update' @ L158, false for 'update' @ L441, false for 'update' @ L158, false for 'update' @ L441
+[2026-10-17T07:48:55.201Z]  @firebase/firestore: Firestore (11.1.0): GrpcConnection RPC 'Write' stream 0x21fce520 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+evaluation error at L147:24 for 'create' @ L147, false for 'create' @ L441, false for 'update' @ L158, false for 'update' @ L441, false for 'create' @ L147, false for 'create' @ L441
+[2026-10-17T07:48:55.212Z]  @firebase/firestore: Firestore (11.1.0): GrpcConnection RPC 'Write' stream 0x21fce521 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+evaluation error at L147:24 for 'create' @ L147, false for 'create' @ L441, false for 'update' @ L158, false for 'update' @ L441, false for 'create' @ L147, false for 'create' @ L441
+[2026-10-17T07:48:55.228Z]  @firebase/firestore: Firestore (11.1.0): GrpcConnection RPC 'Write' stream 0x21fce522 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'create' @ L147, false for 'create' @ L441, false for 'update' @ L158, false for 'update' @ L441
+✔ supplier RUC is unique and only warehouse/admin can create (118.6397ms)
+[2026-10-17T07:48:55.332Z]  @firebase/firestore: Firestore (11.1.0): GrpcConnection RPC 'Write' stream 0x21fce524 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'create' @ L162, false for 'create' @ L441, false for 'update' @ L174, false for 'update' @ L441
+[2026-10-17T07:48:55.350Z]  @firebase/firestore: Firestore (11.1.0): GrpcConnection RPC 'Write' stream 0x21fce526 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+evaluation error at L162:24 for 'create' @ L162, false for 'create' @ L441, false for 'update' @ L174, false for 'update' @ L441, false for 'create' @ L162, false for 'create' @ L441
+[2026-10-17T07:48:55.364Z]  @firebase/firestore: Firestore (11.1.0): GrpcConnection RPC 'Write' stream 0x21fce527 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'update' @ L174, false for 'update' @ L441
+✔ document metadata is owner-scoped, typed and has the expected storage path (135.6738ms)
+✔ Storage permits owner warehouse JPEG and rejects other owner, roles, anonymous and MIME (668.5606ms)
+✔ Storage rejects oversized uploads and inactive profiles (267.4062ms)
+[2026-10-17T07:48:57.470Z]  @firebase/firestore: Firestore (11.1.0): GrpcConnection RPC 'Write' stream 0x52c2dcea error. Code: 7 Message: 7 PERMISSION_DENIED: 
+evaluation error at L250:24 for 'create' @ L250, false for 'create' @ L441, evaluation error at L252:24 for 'update' @ L252, false for 'update' @ L441, false for 'create' @ L250, false for 'create' @ L441
+[2026-10-17T07:48:57.497Z]  @firebase/firestore: Firestore (11.1.0): GrpcConnection RPC 'Write' stream 0x52c2dceb error. Code: 7 Message: 7 PERMISSION_DENIED: 
+evaluation error at L250:24 for 'create' @ L250, false for 'create' @ L441, evaluation error at L252:24 for 'update' @ L252, false for 'update' @ L441, false for 'create' @ L250, false for 'create' @ L441
+[2026-10-17T07:48:57.516Z]  @firebase/firestore: Firestore (11.1.0): GrpcConnection RPC 'Write' stream 0x52c2dcec error. Code: 7 Message: 7 PERMISSION_DENIED: 
+evaluation error at L250:24 for 'create' @ L250, false for 'create' @ L441, evaluation error at L252:24 for 'update' @ L252, false for 'update' @ L441, false for 'create' @ L250, false for 'create' @ L441
+[2026-10-17T07:48:57.569Z]  @firebase/firestore: Firestore (11.1.0): GrpcConnection RPC 'Write' stream 0x52c2dced error. Code: 7 Message: 7 PERMISSION_DENIED: 
+evaluation error at L250:24 for 'create' @ L250, false for 'create' @ L441, evaluation error at L252:24 for 'update' @ L252, false for 'update' @ L441, false for 'create' @ L250, false for 'create' @ L441
+[2026-10-17T07:48:57.617Z]  @firebase/firestore: Firestore (11.1.0): GrpcConnection RPC 'Write' stream 0x52c2dcee error. Code: 7 Message: 7 PERMISSION_DENIED: 
+evaluation error at L250:24 for 'create' @ L250, false for 'create' @ L441, evaluation error at L252:24 for 'update' @ L252, false for 'update' @ L441, false for 'create' @ L250, false for 'create' @ L441
+✔ v2 quote validates three lines, prices, discounts, tax and selected client (1001.3827ms)
+[2026-10-17T07:48:57.834Z]  @firebase/firestore: Firestore (11.1.0): GrpcConnection RPC 'Write' stream 0x52c2dcf0 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+evaluation error at L272:24 for 'create' @ L272, false for 'create' @ L441, evaluation error at L273:24 for 'update' @ L273, false for 'update' @ L441, false for 'update' @ L273, false for 'update' @ L441
+✔ accepted quote becomes exactly one order with unchanged amounts (216.62ms)
+✔ approval preserves stock; multi-product confirmation changes all stocks once (330.6293ms)
+✔ concurrent sales cannot oversell; losing sale leaves all its products unchanged (287.7868ms)
+[2026-10-17T07:48:58.549Z]  @firebase/firestore: Firestore (11.1.0): GrpcConnection RPC 'Write' stream 0x52c2dd0c error. Code: 7 Message: 7 PERMISSION_DENIED: 
+evaluation error at L289:24 for 'create' @ L289, false for 'create' @ L441, false for 'update' @ L297, false for 'update' @ L441, false for 'create' @ L289, false for 'create' @ L441
+[2026-10-17T07:48:58.563Z]  @firebase/firestore: Firestore (11.1.0): GrpcConnection RPC 'Write' stream 0x52c2dd0d error. Code: 7 Message: 7 PERMISSION_DENIED: 
+evaluation error at L41:24 for 'update' @ L41, false for 'update' @ L441, Service call error. Function: [getAfter], Argument: [path_value {
+  segments {
+    simple: "databases"
+  }
+  segments {
+    simple: "(default)"
+  }
+  segments {
+    simple: "documents"
+  }
+  segments {
+    simple: "movimientos_v2"
+  }
+  segments {
+    simple: "bd81686b-5a8e-4b8f-bd54-8dcc090d2006"
+  }
+}
+]. for 'update' @ L41, false for 'update' @ L441
+✔ standalone sale and naked stock edit are denied (109.6078ms)
+[2026-10-17T07:48:58.636Z]  @firebase/firestore: Firestore (11.1.0): GrpcConnection RPC 'Write' stream 0x52c2dd0f error. Code: 7 Message: 7 PERMISSION_DENIED: 
+evaluation error at L396:24 for 'create' @ L396, false for 'create' @ L441, false for 'update' @ L413, false for 'update' @ L441, evaluation error at L41:24 for 'update' @ L41, false for 'update' @ L441, false for 'update' @ L41, false for 'update' @ L441, false for 'create' @ L396, false for 'create' @ L441
+✔ warehouse movement is atomic, audited and immutable; sales cannot forge manual entry (135.0764ms)
+[2026-10-17T07:48:59.280Z]  @firebase/firestore: Firestore (11.1.0): GrpcConnection RPC 'Write' stream 0x52c2dd2f error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'update' @ L375, false for 'update' @ L441
+✔ purchase authorization and full receipt atomically update three products and budget exactly once (581.5651ms)
+[2026-10-17T07:48:59.613Z]  @firebase/firestore: Firestore (11.1.0): GrpcConnection RPC 'Write' stream 0x52c2dd40 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+evaluation error at L333:24 for 'update' @ L333, false for 'update' @ L441, false for 'update' @ L333, false for 'update' @ L441
+✔ receipt requires approval, documentary record and atomic stock changes (360.4459ms)
+[2026-10-17T07:48:59.701Z]  @firebase/firestore: Firestore (11.1.0): GrpcConnection RPC 'Write' stream 0x52c2dd43 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+evaluation error at L350:31 for 'create' @ L350, false for 'create' @ L441, evaluation error at L350:31 for 'update' @ L350, false for 'update' @ L441, false for 'create' @ L350, false for 'create' @ L441
+✔ only admin allocates and authorizes, insufficient capital rejects and cancellation releases once (441.4449ms)
+[2026-10-17T07:49:00.334Z]  @firebase/firestore: Firestore (11.1.0): GrpcConnection RPC 'Write' stream 0x52c2dd66 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+evaluation error at L350:31 for 'update' @ L350, false for 'update' @ L441, false for 'update' @ L350, false for 'update' @ L441
+[2026-10-17T07:49:00.358Z]  @firebase/firestore: Firestore (11.1.0): GrpcConnection RPC 'Write' stream 0x52c2dd67 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+evaluation error at L350:31 for 'update' @ L350, false for 'update' @ L441, false for 'update' @ L350, false for 'update' @ L441
+✔ budget cannot be forged or reduced below reservations; simultaneous approvals cannot overcommit (294.6237ms)
+[2026-10-17T07:49:00.475Z]  @firebase/firestore: Firestore (11.1.0): GrpcConnection RPC 'Write' stream 0x52c2dd6a error. Code: 7 Message: 7 PERMISSION_DENIED: 
+evaluation error at L325:24 for 'create' @ L325, false for 'create' @ L441, evaluation error at L333:24 for 'update' @ L333, false for 'update' @ L441, false for 'create' @ L325, false for 'create' @ L441
+[2026-10-17T07:49:00.487Z]  @firebase/firestore: Firestore (11.1.0): GrpcConnection RPC 'Write' stream 0x52c2dd6b error. Code: 7 Message: 7 PERMISSION_DENIED: 
+evaluation error at L325:24 for 'create' @ L325, false for 'create' @ L441, evaluation error at L333:24 for 'update' @ L333, false for 'update' @ L441, false for 'create' @ L325, false for 'create' @ L441
+✔ purchase validates negotiated price separately from sales price and required metadata (110.2558ms)
+[2026-10-17T07:49:00.620Z]  @firebase/firestore: Firestore (11.1.0): GrpcConnection RPC 'Write' stream 0x52c2dd6f error. Code: 7 Message: 7 PERMISSION_DENIED: 
+evaluation error at L424:31 for 'create' @ L424, false for 'create' @ L441, evaluation error at L424:31 for 'update' @ L424, false for 'update' @ L441, false for 'create' @ L424, false for 'create' @ L441
+[2026-10-17T07:49:00.649Z]  @firebase/firestore: Firestore (11.1.0): GrpcConnection RPC 'Write' stream 0x52c2dd70 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'create' @ L424, false for 'create' @ L441, false for 'update' @ L424, false for 'update' @ L441
+[2026-10-17T07:49:00.676Z]  @firebase/firestore: Firestore (11.1.0): GrpcConnection RPC 'Write' stream 0x52c2dd71 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'create' @ L441, false for 'update' @ L441
+✔ FCM device tokens are private, role checked and cannot be substituted across accounts (188.4359ms)
+[2026-10-17T07:49:00.842Z]  @firebase/firestore: Firestore (11.1.0): GrpcConnection RPC 'Write' stream 0x52c2dd73 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'update' @ L438, false for 'update' @ L441
+✔ PDF metadata requires confirmed sale and remains immutable (185.9802ms)
+✔ PDF Storage accepts own sales PDF and denies other owner, wrong MIME and warehouse role (268.0513ms)
+[2026-10-17T07:49:01.207Z]  @firebase/firestore: Firestore (11.1.0): GrpcConnection RPC 'Write' stream 0x52c2dd7b error. Code: 7 Message: 7 PERMISSION_DENIED: 
+evaluation error at L250:24 for 'create' @ L250, false for 'create' @ L441, evaluation error at L252:24 for 'update' @ L252, false for 'update' @ L441, false for 'create' @ L250, false for 'create' @ L441
+[2026-10-17T07:49:01.232Z]  @firebase/firestore: Firestore (11.1.0): GrpcConnection RPC 'Write' stream 0x52c2dd7c error. Code: 7 Message: 7 PERMISSION_DENIED: 
+evaluation error at L272:24 for 'create' @ L272, false for 'create' @ L441, evaluation error at L273:24 for 'update' @ L273, false for 'update' @ L441, false for 'create' @ L272, false for 'create' @ L441
+✔ new quotes and direct orders reject manually chosen discounts (116.9559ms)
+[2026-10-17T07:49:01.334Z]  @firebase/firestore: Firestore (11.1.0): GrpcConnection RPC 'Write' stream 0x52c2dd7f error. Code: 7 Message: 7 PERMISSION_DENIED: 
+evaluation error at L252:24 for 'update' @ L252, false for 'update' @ L441, Property decisionBy is undefined on object. for 'update' @ L252, false for 'update' @ L441
+[2026-10-17T07:49:01.362Z]  @firebase/firestore: Firestore (11.1.0): GrpcConnection RPC 'Write' stream 0x52c2dd80 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+evaluation error at L252:24 for 'update' @ L252, false for 'update' @ L441, false for 'update' @ L252, false for 'update' @ L441
+[2026-10-17T07:49:01.374Z]  @firebase/firestore: Firestore (11.1.0): GrpcConnection RPC 'Write' stream 0x52c2dd81 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+evaluation error at L252:24 for 'update' @ L252, false for 'update' @ L441, false for 'update' @ L252, false for 'update' @ L441
+[2026-10-17T07:49:01.384Z]  @firebase/firestore: Firestore (11.1.0): GrpcConnection RPC 'Write' stream 0x52c2dd82 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+evaluation error at L252:24 for 'update' @ L252, false for 'update' @ L441, false for 'update' @ L252, false for 'update' @ L441
+✔ acceptance requires channel, reason, authenticated actor and server timestamp (177.442ms)
+✔ legacy accepted quote keeps its original discount during conversion (109.6551ms)
+✔ three-line accepted quote completes conversion validation and sale with its audit context (202.8323ms)
+ℹ tests 34
+ℹ suites 0
+ℹ pass 34
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 13299.9689
++  Script exited successfully (code 0)
+i  emulators: Shutting down emulators.
+i  firestore: Stopping Firestore Emulator
+!  Firestore Emulator has exited upon receiving signal: SIGINT
+i  storage: Stopping Storage Emulator
+i  hub: Stopping emulator hub
+i  logging: Stopping Logging Emulator

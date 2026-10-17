@@ -1,0 +1,5 @@
+*
+!build/
+!build/install/
+!build/install/siderurgica-inventory-notifier/
+!build/install/siderurgica-inventory-notifier/**

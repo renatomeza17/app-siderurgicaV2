@@ -1,0 +1,67 @@
+[
+  {
+    "path": "CONFIGURACION_CONSULTA_RUC.md",
+    "backup": "C:\\Users\\Usuario\\Desktop\\Ejercicios Progra\\Ejercicios Kotlin\\SiderurgicaFirebase_Sprints_1_2_3\\SiderurgicaFirebase\\.codex-backups\\ruc-directo-20261017-113814\\CONFIGURACION_CONSULTA_RUC.md",
+    "finalSha256": "a390cdf5754853332af7d3f24816533ab8377daa9128a5489c668e7f7268c83f"
+  },
+  {
+    "path": "GUIA_HU04_PARA_EXPOSICION.md",
+    "backup": "C:\\Users\\Usuario\\Desktop\\Ejercicios Progra\\Ejercicios Kotlin\\SiderurgicaFirebase_Sprints_1_2_3\\SiderurgicaFirebase\\.codex-backups\\ruc-directo-20261017-113814\\GUIA_HU04_PARA_EXPOSICION.md",
+    "finalSha256": "3ba8384b4c7eef9102694e4c0b1f7aa0503fc6350171d3889872c324ca3ff562"
+  },
+  {
+    "path": "GUIA_HU08_COMPRAS_Y_PRUEBAS.md",
+    "backup": "C:\\Users\\Usuario\\Desktop\\Ejercicios Progra\\Ejercicios Kotlin\\SiderurgicaFirebase_Sprints_1_2_3\\SiderurgicaFirebase\\.codex-backups\\ruc-directo-20261017-113814\\GUIA_HU08_COMPRAS_Y_PRUEBAS.md",
+    "finalSha256": "815307ba0fce2e66786235ca878cc1d89abe172898d01cedc358ab45f5bdede9"
+  },
+  {
+    "path": "GUIA_SPRINTS_1_2_3.md",
+    "backup": "C:\\Users\\Usuario\\Desktop\\Ejercicios Progra\\Ejercicios Kotlin\\SiderurgicaFirebase_Sprints_1_2_3\\SiderurgicaFirebase\\.codex-backups\\ruc-directo-20261017-113814\\GUIA_SPRINTS_1_2_3.md",
+    "finalSha256": "c41f5c6fdbc6b1a7018ece0d33059ab43fa039445d6af1afffb060899c37d1f5"
+  },
+  {
+    "path": "GUION_HU08_FLUJO_COMPLETO.md",
+    "backup": "C:\\Users\\Usuario\\Desktop\\Ejercicios Progra\\Ejercicios Kotlin\\SiderurgicaFirebase_Sprints_1_2_3\\SiderurgicaFirebase\\.codex-backups\\ruc-directo-20261017-113814\\GUION_HU08_FLUJO_COMPLETO.md",
+    "finalSha256": "dd1870979008721fb239aa6c877f7305755e75b24a3b1753beeea10ed7226c51"
+  },
+  {
+    "path": "README.md",
+    "backup": "C:\\Users\\Usuario\\Desktop\\Ejercicios Progra\\Ejercicios Kotlin\\SiderurgicaFirebase_Sprints_1_2_3\\SiderurgicaFirebase\\.codex-backups\\ruc-directo-20261017-113814\\README.md",
+    "finalSha256": "a20c8dd60a27482bf581cf7012e260c4c196f383aaaaf45952b7abbf5a487b74"
+  },
+  {
+    "path": "VALIDACION.md",
+    "backup": "C:\\Users\\Usuario\\Desktop\\Ejercicios Progra\\Ejercicios Kotlin\\SiderurgicaFirebase_Sprints_1_2_3\\SiderurgicaFirebase\\.codex-backups\\ruc-directo-20261017-113814\\VALIDACION.md",
+    "finalSha256": "076baee80229a94b28fd4689ddfc55692c0f2fa6c1232648543940944b30e9d8"
+  },
+  {
+    "path": "app/build.gradle.kts",
+    "backup": "C:\\Users\\Usuario\\Desktop\\Ejercicios Progra\\Ejercicios Kotlin\\SiderurgicaFirebase_Sprints_1_2_3\\SiderurgicaFirebase\\.codex-backups\\ruc-directo-20261017-113814\\app\\build.gradle.kts",
+    "finalSha256": "5a1e36cfbf019ee3456f8ee69f04895da499f85c37a42f3cac669047a7b62f51"
+  },
+  {
+    "path": "app/src/main/java/pe/edu/unmsm/siderurgica/data/remote/RucApi.kt",
+    "backup": "C:\\Users\\Usuario\\Desktop\\Ejercicios Progra\\Ejercicios Kotlin\\SiderurgicaFirebase_Sprints_1_2_3\\SiderurgicaFirebase\\.codex-backups\\ruc-directo-20261017-113814\\app\\src\\main\\java\\pe\\edu\\unmsm\\siderurgica\\data\\remote\\RucApi.kt",
+    "finalSha256": "c64e825db6922d94a19b222178e55728fd4cdd1a71475f4fa75f274aca07c4d5"
+  },
+  {
+    "path": "app/src/main/java/pe/edu/unmsm/siderurgica/di/AppModule.kt",
+    "backup": "C:\\Users\\Usuario\\Desktop\\Ejercicios Progra\\Ejercicios Kotlin\\SiderurgicaFirebase_Sprints_1_2_3\\SiderurgicaFirebase\\.codex-backups\\ruc-directo-20261017-113814\\app\\src\\main\\java\\pe\\edu\\unmsm\\siderurgica\\di\\AppModule.kt",
+    "finalSha256": "2c34e0e46dadd2cfe6ec8dc0b64ab9653e3c74c205962af127f2ea2eaa99f09d"
+  },
+  {
+    "path": "app/src/test/java/pe/edu/unmsm/siderurgica/RucApiTest.kt",
+    "backup": "C:\\Users\\Usuario\\Desktop\\Ejercicios Progra\\Ejercicios Kotlin\\SiderurgicaFirebase_Sprints_1_2_3\\SiderurgicaFirebase\\.codex-backups\\ruc-directo-20261017-113814\\app\\src\\test\\java\\pe\\edu\\unmsm\\siderurgica\\RucApiTest.kt",
+    "finalSha256": "d7024239926f6b9e806658775bd7e42672c49225cfb1444793b32fb4d1055e32"
+  },
+  {
+    "path": "cloud-ruc/CONFIGURACION_OPCIONAL.md",
+    "backup": null,
+    "finalSha256": "addaaf428ff2406987a87a806fe0727f3ece1c354d49f777e07c7c5997f9ba78"
+  },
+  {
+    "path": "cloud-ruc/README.md",
+    "backup": "C:\\Users\\Usuario\\Desktop\\Ejercicios Progra\\Ejercicios Kotlin\\SiderurgicaFirebase_Sprints_1_2_3\\SiderurgicaFirebase\\.codex-backups\\ruc-directo-20261017-113814\\cloud-ruc\\README.md",
+    "finalSha256": "ba829114d32afad27038c17be7a8f1d790f4a625429421195f99cb4bd607d697"
+  }
+]

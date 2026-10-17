@@ -1,0 +1,9 @@
+*
+!Dockerfile
+!.dockerignore
+!build/
+build/*
+!build/install/
+build/install/*
+!build/install/siderurgica-ruc/
+!build/install/siderurgica-ruc/**

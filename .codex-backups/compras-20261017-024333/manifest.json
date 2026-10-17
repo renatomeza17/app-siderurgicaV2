@@ -1,0 +1,117 @@
+[
+  {
+    "path": "GUIA_HISTORIA_PARA_EXPOSICION.md",
+    "backup": "C:\\Users\\Usuario\\Desktop\\Ejercicios Progra\\Ejercicios Kotlin\\SiderurgicaFirebase_Sprints_1_2_3\\SiderurgicaFirebase\\.codex-backups\\compras-20261017-024333\\GUIA_HISTORIA_PARA_EXPOSICION.md",
+    "finalSha256": "c004122794b3e97ad252a7d52cb227b2843ba265ab0a8220852904bc7b5f128a"
+  },
+  {
+    "path": "GUIA_HU08_COMPRAS_Y_PRUEBAS.md",
+    "backup": "C:\\Users\\Usuario\\Desktop\\Ejercicios Progra\\Ejercicios Kotlin\\SiderurgicaFirebase_Sprints_1_2_3\\SiderurgicaFirebase\\.codex-backups\\compras-20261017-024333\\GUIA_HU08_COMPRAS_Y_PRUEBAS.md",
+    "finalSha256": "750eb4c4bc3d758fe1c0f27ad22e195ae85f9b7d142b6b58e72855b0768fa1bb"
+  },
+  {
+    "path": "GUIA_SPRINTS_1_2_3.md",
+    "backup": "C:\\Users\\Usuario\\Desktop\\Ejercicios Progra\\Ejercicios Kotlin\\SiderurgicaFirebase_Sprints_1_2_3\\SiderurgicaFirebase\\.codex-backups\\compras-20261017-024333\\GUIA_SPRINTS_1_2_3.md",
+    "finalSha256": "aefbbe41099a132116b7d264c0eb3d8ad2cbf01f4259cf1e9c28c18ba8aa8274"
+  },
+  {
+    "path": "GUION_HU08_FLUJO_COMPLETO.md",
+    "backup": null,
+    "finalSha256": "72dede606dfadd80149c3ea2a87916061f4249c8e098c99b0fd54336d7c309e5"
+  },
+  {
+    "path": "README.md",
+    "backup": "C:\\Users\\Usuario\\Desktop\\Ejercicios Progra\\Ejercicios Kotlin\\SiderurgicaFirebase_Sprints_1_2_3\\SiderurgicaFirebase\\.codex-backups\\compras-20261017-024333\\README.md",
+    "finalSha256": "d4335eacc0d6bec6f99c67853e327b3c7346031d27ba1d8c9e2806d4dbe54a18"
+  },
+  {
+    "path": "VALIDACION.md",
+    "backup": "C:\\Users\\Usuario\\Desktop\\Ejercicios Progra\\Ejercicios Kotlin\\SiderurgicaFirebase_Sprints_1_2_3\\SiderurgicaFirebase\\.codex-backups\\compras-20261017-024333\\VALIDACION.md",
+    "finalSha256": "b79ce3c5312be7fda4181ca2e31a78654f413e3c85736da44a84a3074737e008"
+  },
+  {
+    "path": "app/src/main/java/pe/edu/unmsm/siderurgica/data/documents/PurchasePdfRepository.kt",
+    "backup": null,
+    "finalSha256": "46e047988674df95ab4c5c924197f3706ccebf696d068828c0567853767bc1b1"
+  },
+  {
+    "path": "app/src/main/java/pe/edu/unmsm/siderurgica/domain/model/Business.kt",
+    "backup": "C:\\Users\\Usuario\\Desktop\\Ejercicios Progra\\Ejercicios Kotlin\\SiderurgicaFirebase_Sprints_1_2_3\\SiderurgicaFirebase\\.codex-backups\\compras-20261017-024333\\app\\src\\main\\java\\pe\\edu\\unmsm\\siderurgica\\domain\\model\\Business.kt",
+    "finalSha256": "f3cc2e5ef61251f204b913dfd963df370cbd6e2a3c7d51e0e801c62b0d2fd47f"
+  },
+  {
+    "path": "app/src/main/java/pe/edu/unmsm/siderurgica/domain/repository/BusinessRepository.kt",
+    "backup": "C:\\Users\\Usuario\\Desktop\\Ejercicios Progra\\Ejercicios Kotlin\\SiderurgicaFirebase_Sprints_1_2_3\\SiderurgicaFirebase\\.codex-backups\\compras-20261017-024333\\app\\src\\main\\java\\pe\\edu\\unmsm\\siderurgica\\domain\\repository\\BusinessRepository.kt",
+    "finalSha256": "c78a984220be2a9d83e1a165a25a0a653aea698eaac1e7b9916d9172c2a6b3e1"
+  },
+  {
+    "path": "app/src/main/java/pe/edu/unmsm/siderurgica/domain/rules/PurchaseRules.kt",
+    "backup": null,
+    "finalSha256": "79f850e7147940ae407370cfd97323e0ecf64406e1fccffcff000cdbf4a964ac"
+  },
+  {
+    "path": "app/src/main/java/pe/edu/unmsm/siderurgica/firebase/FirestoreBusinessRepository.kt",
+    "backup": "C:\\Users\\Usuario\\Desktop\\Ejercicios Progra\\Ejercicios Kotlin\\SiderurgicaFirebase_Sprints_1_2_3\\SiderurgicaFirebase\\.codex-backups\\compras-20261017-024333\\app\\src\\main\\java\\pe\\edu\\unmsm\\siderurgica\\firebase\\FirestoreBusinessRepository.kt",
+    "finalSha256": "a6c5e6ef1508843b6ebb5aee34ad022c4b866799461abcf5b41c22386581c08b"
+  },
+  {
+    "path": "app/src/main/java/pe/edu/unmsm/siderurgica/navigation/AppNavigation.kt",
+    "backup": "C:\\Users\\Usuario\\Desktop\\Ejercicios Progra\\Ejercicios Kotlin\\SiderurgicaFirebase_Sprints_1_2_3\\SiderurgicaFirebase\\.codex-backups\\compras-20261017-024333\\app\\src\\main\\java\\pe\\edu\\unmsm\\siderurgica\\navigation\\AppNavigation.kt",
+    "finalSha256": "aaadcf5d3cbfa6b14bb535ad0eb2928ee9107dd6681c94acbbe014d591bbe53d"
+  },
+  {
+    "path": "app/src/main/java/pe/edu/unmsm/siderurgica/ui/screens/business/BusinessScreen.kt",
+    "backup": "C:\\Users\\Usuario\\Desktop\\Ejercicios Progra\\Ejercicios Kotlin\\SiderurgicaFirebase_Sprints_1_2_3\\SiderurgicaFirebase\\.codex-backups\\compras-20261017-024333\\app\\src\\main\\java\\pe\\edu\\unmsm\\siderurgica\\ui\\screens\\business\\BusinessScreen.kt",
+    "finalSha256": "c6f34cd41fe827616f09848c9f9ab1bad487086071c880417a524ad7b41c4d8a"
+  },
+  {
+    "path": "app/src/main/java/pe/edu/unmsm/siderurgica/ui/screens/business/BusinessViewModel.kt",
+    "backup": "C:\\Users\\Usuario\\Desktop\\Ejercicios Progra\\Ejercicios Kotlin\\SiderurgicaFirebase_Sprints_1_2_3\\SiderurgicaFirebase\\.codex-backups\\compras-20261017-024333\\app\\src\\main\\java\\pe\\edu\\unmsm\\siderurgica\\ui\\screens\\business\\BusinessViewModel.kt",
+    "finalSha256": "14f32f8eaae98d750958b2ec238a07f82fb6c9213f725368960c051b5d031e37"
+  },
+  {
+    "path": "app/src/main/java/pe/edu/unmsm/siderurgica/ui/screens/business/PurchasePdfActions.kt",
+    "backup": null,
+    "finalSha256": "9b1283655bdd62c9cb810829be44fe90b9f820410302e3a7ff454003773720f5"
+  },
+  {
+    "path": "app/src/main/java/pe/edu/unmsm/siderurgica/ui/screens/business/PurchaseScreen.kt",
+    "backup": "C:\\Users\\Usuario\\Desktop\\Ejercicios Progra\\Ejercicios Kotlin\\SiderurgicaFirebase_Sprints_1_2_3\\SiderurgicaFirebase\\.codex-backups\\compras-20261017-024333\\app\\src\\main\\java\\pe\\edu\\unmsm\\siderurgica\\ui\\screens\\business\\PurchaseScreen.kt",
+    "finalSha256": "64bde3e0b634d7966a616aa837f35a7e8956da474299feb195146a64a2726d48"
+  },
+  {
+    "path": "app/src/main/java/pe/edu/unmsm/siderurgica/ui/screens/drafts/DraftScreen.kt",
+    "backup": "C:\\Users\\Usuario\\Desktop\\Ejercicios Progra\\Ejercicios Kotlin\\SiderurgicaFirebase_Sprints_1_2_3\\SiderurgicaFirebase\\.codex-backups\\compras-20261017-024333\\app\\src\\main\\java\\pe\\edu\\unmsm\\siderurgica\\ui\\screens\\drafts\\DraftScreen.kt",
+    "finalSha256": "15dfeada6b898579b8e4c7039ecbfd8b313720f55ed102e708f91ad6b48d2042"
+  },
+  {
+    "path": "app/src/main/java/pe/edu/unmsm/siderurgica/ui/screens/products/ProductScreen.kt",
+    "backup": "C:\\Users\\Usuario\\Desktop\\Ejercicios Progra\\Ejercicios Kotlin\\SiderurgicaFirebase_Sprints_1_2_3\\SiderurgicaFirebase\\.codex-backups\\compras-20261017-024333\\app\\src\\main\\java\\pe\\edu\\unmsm\\siderurgica\\ui\\screens\\products\\ProductScreen.kt",
+    "finalSha256": "edb546e5f2a871983e4effbdb91e2720c4811c814ba9dc09dd335b29094c80c2"
+  },
+  {
+    "path": "app/src/main/res/xml/file_paths.xml",
+    "backup": "C:\\Users\\Usuario\\Desktop\\Ejercicios Progra\\Ejercicios Kotlin\\SiderurgicaFirebase_Sprints_1_2_3\\SiderurgicaFirebase\\.codex-backups\\compras-20261017-024333\\app\\src\\main\\res\\xml\\file_paths.xml",
+    "finalSha256": "5583982d7e67b88b3670bca89490e3e0d61bcc5b8aa23b2d03780d4f01f0b959"
+  },
+  {
+    "path": "app/src/test/java/pe/edu/unmsm/siderurgica/LocalPersistenceTest.kt",
+    "backup": "C:\\Users\\Usuario\\Desktop\\Ejercicios Progra\\Ejercicios Kotlin\\SiderurgicaFirebase_Sprints_1_2_3\\SiderurgicaFirebase\\.codex-backups\\compras-20261017-024333\\app\\src\\test\\java\\pe\\edu\\unmsm\\siderurgica\\LocalPersistenceTest.kt",
+    "finalSha256": "b2df3fb423001b741febf8fd79de6c7a6c413c07d82c679d7c33c49a4eef768c"
+  },
+  {
+    "path": "app/src/test/java/pe/edu/unmsm/siderurgica/PurchaseRulesTest.kt",
+    "backup": "C:\\Users\\Usuario\\Desktop\\Ejercicios Progra\\Ejercicios Kotlin\\SiderurgicaFirebase_Sprints_1_2_3\\SiderurgicaFirebase\\.codex-backups\\compras-20261017-024333\\app\\src\\test\\java\\pe\\edu\\unmsm\\siderurgica\\PurchaseRulesTest.kt",
+    "finalSha256": "ff3389ec2042c99b5a1dd50c8d462542d568e718b0f275952841c5b55848a5f7"
+  },
+  {
+    "path": "firestore.rules",
+    "backup": "C:\\Users\\Usuario\\Desktop\\Ejercicios Progra\\Ejercicios Kotlin\\SiderurgicaFirebase_Sprints_1_2_3\\SiderurgicaFirebase\\.codex-backups\\compras-20261017-024333\\firestore.rules",
+    "finalSha256": "ccf54fb9a3d90440fd2707c079abfb5ffd06ba801b7fd2a24563fd55e9b779ec"
+  },
+  {
+    "path": "rules-tests/sprints.test.mjs",
+    "backup": null,
+    "finalSha256": "3c40f21252ae453efbbbea19f241d1fd099f53f5601fc31c23a8ade3635a8154"
+  }
+]

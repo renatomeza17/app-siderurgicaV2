@@ -1,0 +1,118 @@
+[
+  {
+    "path": "app/src/main/java/pe/edu/unmsm/siderurgica/domain/rules/BusinessRules.kt",
+    "before": "f97fc4f94b02987279ebab765fd3e31ffcddbc1d33b503cfd396fc66b90b8764",
+    "after": "99b951cf207b4a9b0a2b705c04850ee55603b3a7e76400a075f093816811583d",
+    "final": "8ffe9f263d7b12067edb78d24f46aa47eced78f6ac262a16938ca864e3704e66"
+  },
+  {
+    "path": "app/src/main/java/pe/edu/unmsm/siderurgica/domain/model/Business.kt",
+    "before": "370e01ff0912ab72886c40a7f67603d84f843ef39c28b489a1c3b91713bb2329",
+    "after": "edd03f5e7b12492e92027779aeb7fa6ba08e06ad0e80d9db4ccbe261d595714e",
+    "final": "06e0b6e1c8444d7d3f79a034d61ceec4171644912f8ca37c8e7ebbbb27ab3a78"
+  },
+  {
+    "path": "app/src/main/java/pe/edu/unmsm/siderurgica/firebase/FirestoreBusinessRepository.kt",
+    "before": "034e0ee09b92c03cbb24f20e854b262a9ac39ee8263e39fc82b62f2804c2e37a",
+    "after": "9b5207aeebb276f3cc86ab34c126bb16908d9e876aa84bb943aa7067a627f5d8",
+    "final": "95bad4000a19fbeb4325b73c6d27e19862c14fae1e5d6965b5e7b24850f2b8d2"
+  },
+  {
+    "path": "app/src/main/java/pe/edu/unmsm/siderurgica/data/documents/ReceiptRepository.kt",
+    "before": "ef7b2f8092747677e567f483340b87f641bab180392f4ab3e0e9d49f2b00f6e9",
+    "after": "db5841f2d2fe94168989751890f1c07d4127576598d4618214e45771a92ef201",
+    "final": "5b6c9b175abbb7b076410ccd5abc5e1d7dd7e5ef48b4e28faefafe50cc06d0a3"
+  },
+  {
+    "path": "app/src/main/java/pe/edu/unmsm/siderurgica/ui/screens/business/BusinessViewModel.kt",
+    "before": "11fdc51fc67492dc54ace712d1636867a49fa7d41ac6365e36ea5d0331e0d5a8",
+    "after": "7e3710748ab07d56ee771e33b99d9c3c78aa26865bf51f0248a7f3e485073450",
+    "final": "eda62331d30218938d8e65e737d83f6ef2400fab8ecab53525efd11545dd03dd"
+  },
+  {
+    "path": "app/src/main/java/pe/edu/unmsm/siderurgica/ui/screens/business/BusinessScreen.kt",
+    "before": "3135ecbdd46e74cc3bbf686a6d505aaf45f904eaed8f0b4d8c003619cfa47583",
+    "after": "0ed2e1b9ab9369bf5528ecc92f28412c9a61857706bf716f9d8449d156300c05",
+    "final": "5e5cecfb53bf803370959aa80a7afd95a27f2bc4de16c0bd6d90205dc993ba8f"
+  },
+  {
+    "path": "app/src/main/java/pe/edu/unmsm/siderurgica/ui/screens/business/CommercialScreen.kt",
+    "before": null,
+    "after": "08a7c50a8df5a2259826fb1377e164ca85dcbb1932d0f3649a1d6a68a399632f",
+    "final": "ef006ed9319397828afe20fe1ed0ca0486c95cb5d987363f63546b41e20dc9e3"
+  },
+  {
+    "path": "app/src/main/java/pe/edu/unmsm/siderurgica/data/documents/QuotePdfRepository.kt",
+    "before": null,
+    "after": "622c02e97e0ae5c615992c69bb106eeec53f085d55937c6e63332e6d94057c2f",
+    "final": "d89a000350608cab55a78b281f9767e736acad8f982c5558cd2d3e2dd888dc05"
+  },
+  {
+    "path": "app/src/main/java/pe/edu/unmsm/siderurgica/ui/screens/business/QuotePdfActions.kt",
+    "before": null,
+    "after": "ff9e277c2708bd98474f17ca8e28c658c1dbd72b6c686ae939770950a5abcb54",
+    "final": "e845cfd225fe6a632c91cef0dee14de54dd5e80a6263e0809726c6c24c3eb51e"
+  },
+  {
+    "path": "app/src/main/java/pe/edu/unmsm/siderurgica/di/AppModule.kt",
+    "before": "50207364f64887ca939cca8cf3eb4d791b2fb63e72809aace593cead2406f140",
+    "after": "bac9ff11efea33daf295761c5484f97e09713a994063c1fc94eac9720f80baab",
+    "final": "2c6b526824a9cf4c0a78302990b1d6cb30c4779ec1bb27a8c086c25c06e2e105"
+  },
+  {
+    "path": "app/src/main/res/xml/file_paths.xml",
+    "before": "16290f0a233b16ea635ec83ad481d2bb001d2298da67ebedcf0b201d368a309c",
+    "after": "16f7931a191e37923a1a799f635a8999f1096ec4bca2d74af1e1313d6ab3ac90",
+    "final": "eda3e157f4b9f9ac510b9133a4e984650048b74673502885d9217c2ecbffbc4a"
+  },
+  {
+    "path": "firestore.rules",
+    "before": "ae22497bf0df8431c28e49e0d2969c792b90fa3b9c82e59b52fc6e0f67d4a80a",
+    "after": "04c2e1616863c5f66c664802fa4f968341d6115206f1edbced11358d375bfacf",
+    "final": "4d4ad464f1e7582d9baf55fb6bfd4bae45a27f236360b2635aebc80f24e08225"
+  },
+  {
+    "path": "app/src/test/java/pe/edu/unmsm/siderurgica/BusinessRulesTest.kt",
+    "before": "268b44a5dea16d32d88f1a84f138e35ba010a69953c82f521b994cf6399d4a11",
+    "after": "84519414847a72115e737609bf3d224c253816d834fa180c0b0d3591422ed1c7",
+    "final": "804dbbc59566c400fc473de55d5bd8b07c1086435a826196d8c795a831ddc03c"
+  },
+  {
+    "path": "app/src/test/java/pe/edu/unmsm/siderurgica/CommercialFlowTest.kt",
+    "before": null,
+    "after": "535bc043ef49bfe7b28125386168ad6b323e41dd32495371637753d797aa00ed",
+    "final": "8eb6615849e85bd3fe4194aeef42ac92e117bbe4fc4fee9d6f506c19f7cd1763"
+  },
+  {
+    "path": "rules-tests/sprints.test.mjs",
+    "before": "b20b108ffd1d4c7fec5fa43cb359474dd5f91ea3cccc8e89607c8a4929a6dbee",
+    "after": "40e16312834818e2a80dad6eb9b0f4c974209a58276d9e4e64595649d2b34405",
+    "final": "2a2cbd3dcf00a8b3979a4b75037d2cce75bdebe48bc3301ea8a645831f68219d"
+  },
+  {
+    "path": "CAMBIOS_FLUJO_COMERCIAL.md",
+    "before": null,
+    "after": "6985babffb25dd03f3934dbee796cab501a7be67d51f2b0b32266ce39e38aacc",
+    "final": "b7f6cecf0cda42f841dbd0c7e98e580e5290356b26adad8c176f0cfb9777b96c"
+  },
+  {
+    "path": "GUIA_SPRINTS_1_2_3.md",
+    "before": "41e7384d51a6b2915b905c57d6b8b86c1d78579c624032a79bc79185487f0ebd",
+    "final": "786772ef397c9cb056be3f68fb88d545e596708c56f62d15d57353de0716fb44"
+  },
+  {
+    "path": "README.md",
+    "before": "cab66d8b5443da9c44308bdcf69a8ac81b013fdf54992282877c783609a0b3a8",
+    "final": "faa64eb1599a60a471d624bbaf8e452a098b6cb75b8c81e1bdeeed21d8f8aa08"
+  },
+  {
+    "path": "VALIDACION.md",
+    "before": "360c3604e3cb76184f75b2a0c7cd877905500a81b230adc322a7bf455c44d0b0",
+    "final": "f0eb0d4168a56edcbca6019034eb098db498f3635853f79ed992bf99e9487c31"
+  },
+  {
+    "path": "app/src/main/java/pe/edu/unmsm/siderurgica/ui/screens/drafts/DraftScreen.kt",
+    "before": "2c9d26212cb7443686a9fdbc9c63beffb11ae16efe286667fe715b4a7e48f560",
+    "final": "ec07e19139619c65457b64062fe465c72d624bc97c571b5a4cbb96ed00dcd496"
+  }
+]

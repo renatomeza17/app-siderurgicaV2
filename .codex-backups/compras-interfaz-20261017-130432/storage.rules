@@ -1,0 +1,28 @@
+rules_version = '2';
+service firebase.storage {
+  match /b/{bucket}/o {
+    function allowed(uid) {
+      return request.auth != null && request.auth.uid == uid && request.auth.token.email_verified == true
+        && firestore.get(/databases/(default)/documents/usuarios/$(uid)).data.activo == true
+        && firestore.get(/databases/(default)/documents/usuarios/$(uid)).data.rol in ['ADMIN', 'ALMACEN'];
+    }
+    match /usuarios/{uid}/documentos/{fileName} {
+      allow read: if allowed(uid);
+      allow write: if allowed(uid) && request.resource != null
+        && fileName.matches('^[a-f0-9-]{36}[.]jpg$')
+        && request.resource.size < 10 * 1024 * 1024 && request.resource.contentType == 'image/jpeg';
+    }
+
+    function salesAllowed(uid) {
+      return request.auth != null && request.auth.uid==uid && request.auth.token.email_verified==true
+        && firestore.get(/databases/(default)/documents/usuarios/$(uid)).data.activo==true
+        && firestore.get(/databases/(default)/documents/usuarios/$(uid)).data.rol in ['ADMIN','VENTAS'];
+    }
+    match /usuarios/{uid}/comprobantes/{fileName} {
+      allow read: if salesAllowed(uid);
+      allow write: if salesAllowed(uid) && request.resource!=null && fileName.matches('^[a-f0-9-]{36}_(BOLETA|FACTURA)[.]pdf$')
+        && request.resource.size<5*1024*1024 && request.resource.contentType=='application/pdf';
+    }
+    match /{allPaths=**} { allow read, write: if false; }
+  }
+}
