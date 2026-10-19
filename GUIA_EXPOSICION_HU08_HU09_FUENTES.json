@@ -1,0 +1,592 @@
+{
+  "reviewDate": "2026-10-18",
+  "guide": "GUIA_EXPOSICION_COMPLETA_HU08_HU09.md",
+  "sourceFiles": 31,
+  "snippets": [
+    {
+      "path": "app/src/main/java/pe/edu/unmsm/siderurgica/ui/screens/suppliers/SupplierScreen.kt",
+      "start": 33,
+      "end": 40,
+      "sha256": "bb045d0114df8f8c1ef2cfcf6c0502ad6aba5e84e53f359c3380f8af1ea8bdd4"
+    },
+    {
+      "path": "app/src/main/java/pe/edu/unmsm/siderurgica/ui/screens/suppliers/SupplierViewModel.kt",
+      "start": 23,
+      "end": 26,
+      "sha256": "97c852f1724df7a99c9cae9ed164fb152d487337c46b6ba5854be602005c15de"
+    },
+    {
+      "path": "app/src/main/java/pe/edu/unmsm/siderurgica/ui/screens/suppliers/SupplierViewModel.kt",
+      "start": 34,
+      "end": 42,
+      "sha256": "f3095d5ef87292ec3c597500be53d334c338bcbfd32c63444ef4b40fcc80e15f"
+    },
+    {
+      "path": "app/src/main/java/pe/edu/unmsm/siderurgica/domain/rules/InputRules.kt",
+      "start": 18,
+      "end": 22,
+      "sha256": "5bd1ec5f764522c62104d9976b3371b474e531487ee1d78616b2de0b46994dea"
+    },
+    {
+      "path": "app/src/main/java/pe/edu/unmsm/siderurgica/data/remote/RucApi.kt",
+      "start": 19,
+      "end": 27,
+      "sha256": "5c41a87f8d96daa29c74e4bdd2637a754abccb1183da33901ada768df76919d4"
+    },
+    {
+      "path": "app/src/main/java/pe/edu/unmsm/siderurgica/di/AppModule.kt",
+      "start": 35,
+      "end": 39,
+      "sha256": "d9c037d749f4aba2b866612d8861ce5953b02b4c8805cdcd6d0486ae09a9a4e8"
+    },
+    {
+      "path": "app/src/main/java/pe/edu/unmsm/siderurgica/data/remote/RucApi.kt",
+      "start": 14,
+      "end": 16,
+      "sha256": "65534fe1726225f0dbb1195f3135b9965214f737b91864490cdd92a399ffe771"
+    },
+    {
+      "path": "app/src/main/java/pe/edu/unmsm/siderurgica/data/remote/RucApi.kt",
+      "start": 36,
+      "end": 37,
+      "sha256": "970cc82e3ae7bff9afb4c56072f81b2f383343a0e390972e92a509861722ce94"
+    },
+    {
+      "path": "app/src/main/java/pe/edu/unmsm/siderurgica/ui/screens/suppliers/SupplierScreen.kt",
+      "start": 15,
+      "end": 16,
+      "sha256": "b660d3cf5c8a904439248bd8f49953997680028c2e2246fe96c5bf630ae12231"
+    },
+    {
+      "path": "app/src/main/java/pe/edu/unmsm/siderurgica/ui/screens/suppliers/SupplierScreen.kt",
+      "start": 24,
+      "end": 24,
+      "sha256": "7954a6276edeb6bae87dca8cdc162420737f9dc750021b7f1308775d2bc8c9d0"
+    },
+    {
+      "path": "app/src/main/java/pe/edu/unmsm/siderurgica/ui/screens/suppliers/SupplierScreen.kt",
+      "start": 44,
+      "end": 45,
+      "sha256": "dfcd4fce351330853423112ff6ae511520295f3074594dc34b13c02b6ff25526"
+    },
+    {
+      "path": "app/src/main/java/pe/edu/unmsm/siderurgica/domain/model/Supplier.kt",
+      "start": 3,
+      "end": 3,
+      "sha256": "f53d83984d22410321ee7db61d4c82fabffc332cb7414f917741f01e7b882051"
+    },
+    {
+      "path": "app/src/main/java/pe/edu/unmsm/siderurgica/ui/screens/suppliers/SupplierViewModel.kt",
+      "start": 27,
+      "end": 32,
+      "sha256": "114c534880524ba86221fb25efc448e929d1b7f97ae7fbced1d5131b338ef8b4"
+    },
+    {
+      "path": "app/src/main/java/pe/edu/unmsm/siderurgica/domain/rules/SupplierRules.kt",
+      "start": 5,
+      "end": 9,
+      "sha256": "5188b0451ca87db0b4b11f9af5a1157d46d53edaaf2bebc1c3f39e19b9e82918"
+    },
+    {
+      "path": "app/src/main/java/pe/edu/unmsm/siderurgica/data/local/QueueRepository.kt",
+      "start": 15,
+      "end": 20,
+      "sha256": "bcd4fa6cd6431772d75d32433f2d704e0067007ea8b31732574c73c996e66b22"
+    },
+    {
+      "path": "app/src/main/java/pe/edu/unmsm/siderurgica/data/local/LocalDatabase.kt",
+      "start": 6,
+      "end": 8,
+      "sha256": "bd22630fbb9774c6b00bc265963bc7b0291c34a6632cef7b4a4a803b3858b453"
+    },
+    {
+      "path": "app/src/main/java/pe/edu/unmsm/siderurgica/data/local/LocalDatabase.kt",
+      "start": 16,
+      "end": 17,
+      "sha256": "136d27157412803614950f87cbd81566434d1e77cd697393fdb70f5a80131860"
+    },
+    {
+      "path": "app/src/main/java/pe/edu/unmsm/siderurgica/data/local/LocalDatabase.kt",
+      "start": 32,
+      "end": 33,
+      "sha256": "35564ff2980a8772b3b1c439de46ef30efc436016e618677cffa74760ee0ccc8"
+    },
+    {
+      "path": "app/src/main/java/pe/edu/unmsm/siderurgica/data/local/QueueRepository.kt",
+      "start": 36,
+      "end": 42,
+      "sha256": "ba8e23b4cafa702297ec19e7412325897f347c464a333b83b3b57274782229fc"
+    },
+    {
+      "path": "app/src/main/java/pe/edu/unmsm/siderurgica/worker/PendingSyncWorker.kt",
+      "start": 20,
+      "end": 26,
+      "sha256": "11b76dc921d35e5e7b8833cf9b4934f5eb37c930d01e834a5e49e86c3c3bb002"
+    },
+    {
+      "path": "app/src/main/java/pe/edu/unmsm/siderurgica/data/local/LocalDatabase.kt",
+      "start": 19,
+      "end": 19,
+      "sha256": "a531e061015472b9c66b538a31deaabc0be4b48acc18dbb5f5f619d8d75ab55e"
+    },
+    {
+      "path": "app/src/main/java/pe/edu/unmsm/siderurgica/worker/PendingSyncWorker.kt",
+      "start": 32,
+      "end": 32,
+      "sha256": "5e458b59669fd4d4b9678203df2b69a8407834702b9debdc5b7792dcbb372d0f"
+    },
+    {
+      "path": "app/src/main/java/pe/edu/unmsm/siderurgica/firebase/FirestoreSupplierRepository.kt",
+      "start": 25,
+      "end": 38,
+      "sha256": "1fa0cb970deea1cc61da44b53661e295fef51a09d267e1cec06bc7f9e00155b9"
+    },
+    {
+      "path": "firestore.rules",
+      "start": 145,
+      "end": 152,
+      "sha256": "9416e566807af1a02a367afcec0419b61d650b1920d0ce52f08e9a7d209f2ef9"
+    },
+    {
+      "path": "app/src/main/java/pe/edu/unmsm/siderurgica/worker/PendingSyncWorker.kt",
+      "start": 37,
+      "end": 38,
+      "sha256": "5994727dc4944843d48305fc2cfe895b561bae5e29755cd9bd31e55185d9eb81"
+    },
+    {
+      "path": "app/src/main/java/pe/edu/unmsm/siderurgica/firebase/FirestoreSupplierRepository.kt",
+      "start": 13,
+      "end": 22,
+      "sha256": "3ab32aef8e885948ae7538ded471831ef4fbf129d5acd272a3d05c8c3e283fb0"
+    },
+    {
+      "path": "app/src/main/java/pe/edu/unmsm/siderurgica/ui/screens/business/PurchaseScreen.kt",
+      "start": 22,
+      "end": 22,
+      "sha256": "0fa3497133898980aa73a2e97c9cacc181c55b7f3fe3548c542f13d095081e5a"
+    },
+    {
+      "path": "app/src/main/java/pe/edu/unmsm/siderurgica/ui/screens/business/BusinessViewModel.kt",
+      "start": 25,
+      "end": 34,
+      "sha256": "48b2a6b50c347c58f6f93bfcb5649ef1fe4eabf645efc0e2dac1cc0e372ba199"
+    },
+    {
+      "path": "app/src/main/java/pe/edu/unmsm/siderurgica/di/AppModule.kt",
+      "start": 26,
+      "end": 26,
+      "sha256": "9ffce19ebdbc57d1d8bbfd831f30c82acf0a5775bfef83c04c01386886223c48"
+    },
+    {
+      "path": "app/src/main/java/pe/edu/unmsm/siderurgica/firebase/FirebaseServices.kt",
+      "start": 14,
+      "end": 17,
+      "sha256": "f643cba1333e760d600661481f1f8d0ea09b37016c2d68dd41d42b4659e228af"
+    },
+    {
+      "path": "app/src/main/java/pe/edu/unmsm/siderurgica/firebase/FirestoreBusinessRepository.kt",
+      "start": 26,
+      "end": 31,
+      "sha256": "8c2535a61a9891dcebda85523e0631950952e6cece9309ad011973472abaae94"
+    },
+    {
+      "path": "app/src/main/java/pe/edu/unmsm/siderurgica/ui/screens/business/PurchaseScreen.kt",
+      "start": 100,
+      "end": 100,
+      "sha256": "7bdd51f775c44499d375223b49aca209965e5f9300a2eab54920eb66f94ed968"
+    },
+    {
+      "path": "app/src/main/java/pe/edu/unmsm/siderurgica/ui/screens/business/PurchaseScreen.kt",
+      "start": 110,
+      "end": 110,
+      "sha256": "a53dd1a98ac758b642266c101fe9e281ae24b36e3135448e9af2e374e84ec842"
+    },
+    {
+      "path": "app/src/main/java/pe/edu/unmsm/siderurgica/firebase/FirestoreBusinessRepository.kt",
+      "start": 49,
+      "end": 58,
+      "sha256": "0d775a4956d8df40f1d828b4fe429169f64f30c7ad2f90a60c56350bd145e7fa"
+    },
+    {
+      "path": "app/src/main/java/pe/edu/unmsm/siderurgica/firebase/FirestoreBusinessRepository.kt",
+      "start": 66,
+      "end": 71,
+      "sha256": "8c6f3f2054a14b47e96233392bf432aa017b594129f021872737ebaba3b43bc7"
+    },
+    {
+      "path": "app/src/main/java/pe/edu/unmsm/siderurgica/firebase/FirestoreBusinessRepository.kt",
+      "start": 74,
+      "end": 75,
+      "sha256": "6a773be209f7240c4af49e336a201349fc47247f374b48da60333eb1139d79d3"
+    },
+    {
+      "path": "app/src/main/java/pe/edu/unmsm/siderurgica/firebase/FirestoreBusinessRepository.kt",
+      "start": 155,
+      "end": 163,
+      "sha256": "d8557e5f2cb0bbeebe195f3c1319294f1615bca50fae263b1b3f6c783dcc1261"
+    },
+    {
+      "path": "app/src/main/java/pe/edu/unmsm/siderurgica/domain/rules/PurchaseRules.kt",
+      "start": 15,
+      "end": 18,
+      "sha256": "cb59ca2a864759dc9b01c4faffaaf89efe972b9942d08692d94df24834941c64"
+    },
+    {
+      "path": "app/src/main/java/pe/edu/unmsm/siderurgica/ui/screens/business/BusinessScreen.kt",
+      "start": 77,
+      "end": 78,
+      "sha256": "d37c2b8718b32a827b705e04e7f2e0da1194a6b49d964aff19aeb70d925dd478"
+    },
+    {
+      "path": "app/src/main/java/pe/edu/unmsm/siderurgica/ui/screens/business/BusinessScreen.kt",
+      "start": 96,
+      "end": 100,
+      "sha256": "f9347ecc9614833d4c16f962672e7bb6c64c340185e78c63fee39d1ea620d83f"
+    },
+    {
+      "path": "app/src/main/java/pe/edu/unmsm/siderurgica/ui/screens/business/BusinessScreen.kt",
+      "start": 110,
+      "end": 112,
+      "sha256": "4a72b0f84536336cbcad5c279027a53851089c0a2b0a59be3691a7a92193f1b4"
+    },
+    {
+      "path": "app/src/main/java/pe/edu/unmsm/siderurgica/domain/rules/BusinessRules.kt",
+      "start": 25,
+      "end": 39,
+      "sha256": "30408fc648dc5f9f43521812e2f12490e8b871acb44c3999cee0383e5c9d75d9"
+    },
+    {
+      "path": "app/src/main/java/pe/edu/unmsm/siderurgica/domain/rules/BusinessRules.kt",
+      "start": 40,
+      "end": 45,
+      "sha256": "1d9f49e21f27888dc5babade4c4451e4a28f4eefb1244c3ae6b158abe8e02535"
+    },
+    {
+      "path": "app/src/main/java/pe/edu/unmsm/siderurgica/domain/rules/SalesRules.kt",
+      "start": 4,
+      "end": 7,
+      "sha256": "6560d9c5883251e90e4c38b64c7d0900b1b787d7c5f6e19b265570cd36d0ff51"
+    },
+    {
+      "path": "app/src/main/java/pe/edu/unmsm/siderurgica/ui/screens/business/BusinessScreen.kt",
+      "start": 124,
+      "end": 126,
+      "sha256": "6808eacd0a46117de38e0b6312512cafaf1e5f7aab5a69553359f541c19b6726"
+    },
+    {
+      "path": "app/src/main/java/pe/edu/unmsm/siderurgica/ui/screens/business/BusinessViewModel.kt",
+      "start": 48,
+      "end": 52,
+      "sha256": "0fe483d72c68f438bf4df1e3c9f49f315a82dece9fb2fc9d10ec40c4eee6656f"
+    },
+    {
+      "path": "app/src/main/java/pe/edu/unmsm/siderurgica/domain/rules/PurchaseRules.kt",
+      "start": 5,
+      "end": 9,
+      "sha256": "cf2b1ca83fcf18af6717f44bde34ed5c630e9f6e2d10da528a4ce08f68db0079"
+    },
+    {
+      "path": "app/src/main/java/pe/edu/unmsm/siderurgica/firebase/FirestoreBusinessRepository.kt",
+      "start": 80,
+      "end": 91,
+      "sha256": "9d5644edec01f1f5280d2485ab6bd0df5b367202624b29a71e94f6ea2c22752a"
+    },
+    {
+      "path": "app/src/main/java/pe/edu/unmsm/siderurgica/firebase/FirestoreBusinessRepository.kt",
+      "start": 96,
+      "end": 97,
+      "sha256": "842509b456ef6db739067a3ca236593a4838b20ba8ae975dc850132016acb8e4"
+    },
+    {
+      "path": "app/src/main/java/pe/edu/unmsm/siderurgica/firebase/FirestoreBusinessRepository.kt",
+      "start": 105,
+      "end": 113,
+      "sha256": "65aac8e90d71fe727a35382bd7e53734ea05f22da06eb4bcedb73895523e786c"
+    },
+    {
+      "path": "app/src/main/java/pe/edu/unmsm/siderurgica/ui/screens/business/PurchaseScreen.kt",
+      "start": 112,
+      "end": 120,
+      "sha256": "6b8265c06e324d8c2d3ddaf1425efee523e8e657c1b5d882287b57ad83d01b37"
+    },
+    {
+      "path": "app/src/main/java/pe/edu/unmsm/siderurgica/firebase/FirestoreBusinessRepository.kt",
+      "start": 164,
+      "end": 181,
+      "sha256": "77b3c49df72dee2ae5f83145dea596324bd5db73c60b82f7d4157b20f2082b5d"
+    },
+    {
+      "path": "app/src/main/java/pe/edu/unmsm/siderurgica/ui/screens/business/PurchasePdfActions.kt",
+      "start": 41,
+      "end": 41,
+      "sha256": "5de5e8f7c72aea6eca48f88eec570d45976d84748c0583b4dee13d377ba06be3"
+    },
+    {
+      "path": "app/src/main/java/pe/edu/unmsm/siderurgica/data/documents/PurchasePdfRepository.kt",
+      "start": 38,
+      "end": 46,
+      "sha256": "acd2701300fd797f7802df3f2662bbca9f78ebf9e1a2ea8bc4b5bdbf0eaf33ec"
+    },
+    {
+      "path": "app/src/main/java/pe/edu/unmsm/siderurgica/data/documents/PurchasePdfRepository.kt",
+      "start": 14,
+      "end": 20,
+      "sha256": "9cbb82bf99cad4306f9832ac67d260aa466a97bf4baf8b122daa066df0c0521b"
+    },
+    {
+      "path": "app/src/main/java/pe/edu/unmsm/siderurgica/data/documents/PurchasePdfRepository.kt",
+      "start": 29,
+      "end": 32,
+      "sha256": "c125aedb6a28c1ef4f16e63e7ff8acdf0d906ccc6255c8b44f12b97499baf4ea"
+    },
+    {
+      "path": "app/src/main/java/pe/edu/unmsm/siderurgica/data/documents/PurchasePdfRepository.kt",
+      "start": 64,
+      "end": 68,
+      "sha256": "991ad5d2308b4e97bdbfe8ac62ca44adce1c1b911141df5eb199ceebf137fa8a"
+    },
+    {
+      "path": "app/src/main/java/pe/edu/unmsm/siderurgica/ui/screens/business/PurchasePdfActions.kt",
+      "start": 50,
+      "end": 53,
+      "sha256": "84deb377d55d113e7bc71d90d61b31c020866257b3e23beaf72ae880ed3e1c95"
+    },
+    {
+      "path": "app/src/main/java/pe/edu/unmsm/siderurgica/ui/screens/business/PurchaseScreen.kt",
+      "start": 121,
+      "end": 134,
+      "sha256": "78606ca88d2a0709b3ca301fdd473e5db31e9280e5dec23f10a7e820ce93bcd3"
+    },
+    {
+      "path": "app/src/main/java/pe/edu/unmsm/siderurgica/ui/screens/business/PurchasePhotoCapture.kt",
+      "start": 32,
+      "end": 33,
+      "sha256": "799a30b82d4b56f93d67c4218c2d0eb53dabf833f70cf2862bfef81030e072a1"
+    },
+    {
+      "path": "app/src/main/java/pe/edu/unmsm/siderurgica/ui/screens/business/PurchasePhotoCapture.kt",
+      "start": 42,
+      "end": 44,
+      "sha256": "09847acca37e404994b3ac8917c922ddc16fd66852b200e39220a387d08840ba"
+    },
+    {
+      "path": "app/src/main/java/pe/edu/unmsm/siderurgica/ui/screens/business/PurchasePhotoCapture.kt",
+      "start": 27,
+      "end": 31,
+      "sha256": "5bd0fe7a396f031c965b88230ae09ed03ad34884c0c26f04b5883123d660d5b8"
+    },
+    {
+      "path": "app/src/main/java/pe/edu/unmsm/siderurgica/data/documents/DocumentScanner.kt",
+      "start": 20,
+      "end": 29,
+      "sha256": "43b66643c6bd93a8098e71a6b3634f655ae2899d7a16b1ea60fa0b646871dd6c"
+    },
+    {
+      "path": "app/src/main/java/pe/edu/unmsm/siderurgica/data/documents/DocumentScanner.kt",
+      "start": 28,
+      "end": 35,
+      "sha256": "0f8433c58a9e5e78a56b0090c68841882a79897e6ad060f93449a4a69619f91f"
+    },
+    {
+      "path": "app/src/main/java/pe/edu/unmsm/siderurgica/data/documents/DocumentScanner.kt",
+      "start": 35,
+      "end": 47,
+      "sha256": "d6f89f7cae8e016bb5a208d4327445f73266e1391ec669903729114f17a823bd"
+    },
+    {
+      "path": "app/src/main/java/pe/edu/unmsm/siderurgica/domain/rules/InvoiceParser.kt",
+      "start": 5,
+      "end": 13,
+      "sha256": "90c39df42704d4b7d4b90482d8cd6526478c6d4de11457dc5a64d0def70b6e83"
+    },
+    {
+      "path": "app/src/main/java/pe/edu/unmsm/siderurgica/domain/rules/PurchaseRules.kt",
+      "start": 11,
+      "end": 14,
+      "sha256": "4f3fc7fd7c88d4c848851eeb5f5de29f8fc9e88e0c7cc28f26b9f28a388575c1"
+    },
+    {
+      "path": "app/src/main/java/pe/edu/unmsm/siderurgica/ui/screens/business/BusinessViewModel.kt",
+      "start": 66,
+      "end": 68,
+      "sha256": "63e80c1de2733cdb607cc67c49abd953c7ef2bb4612b7fc103f013f363400d90"
+    },
+    {
+      "path": "app/src/main/java/pe/edu/unmsm/siderurgica/data/local/QueueRepository.kt",
+      "start": 21,
+      "end": 29,
+      "sha256": "1892f40e922d5b71ab71d0acb268d603a475fcdc073e728ee2f430245545ec07"
+    },
+    {
+      "path": "app/src/main/java/pe/edu/unmsm/siderurgica/domain/model/PurchasePhoto.kt",
+      "start": 2,
+      "end": 2,
+      "sha256": "195112bbe10801037d393213950eead666d12973cd55178513c312368ce85e48"
+    },
+    {
+      "path": "app/src/main/java/pe/edu/unmsm/siderurgica/data/local/LocalDatabase.kt",
+      "start": 17,
+      "end": 17,
+      "sha256": "c28b15e123c30cb814a289ff931ce2e379f5603fef049c0d0d5f8bedf8b5277c"
+    },
+    {
+      "path": "app/src/main/java/pe/edu/unmsm/siderurgica/worker/PendingSyncWorker.kt",
+      "start": 29,
+      "end": 29,
+      "sha256": "94a103b56eb80c2e56faff295f13bc3cc6c8f34820a74529065f46843b8adf2c"
+    },
+    {
+      "path": "app/src/main/java/pe/edu/unmsm/siderurgica/firebase/FirestoreBusinessRepository.kt",
+      "start": 129,
+      "end": 145,
+      "sha256": "787fb9f86495891605cf6624092fc10ad094dbc3fccce33b4dd85356f7f84879"
+    },
+    {
+      "path": "app/src/main/java/pe/edu/unmsm/siderurgica/firebase/FirestoreBusinessRepository.kt",
+      "start": 188,
+      "end": 191,
+      "sha256": "5f1483be84959d2335042c6970492dee9da8d418a44e1247b3b5bd95322ad0ee"
+    },
+    {
+      "path": "app/src/main/java/pe/edu/unmsm/siderurgica/domain/rules/BusinessRules.kt",
+      "start": 46,
+      "end": 58,
+      "sha256": "e6ae34c64a140d5e5ffecaa519031bbbad5fc256c719dbc273cef1f8a3367174"
+    },
+    {
+      "path": "app/src/main/java/pe/edu/unmsm/siderurgica/firebase/FirestoreBusinessRepository.kt",
+      "start": 144,
+      "end": 150,
+      "sha256": "378f00d55da9991f3ffada9173a089a79690db403f787c6477c2e6ac09692162"
+    },
+    {
+      "path": "app/src/main/java/pe/edu/unmsm/siderurgica/firebase/FirestoreBusinessRepository.kt",
+      "start": 152,
+      "end": 153,
+      "sha256": "e5e4cc964b4ceb9d1febd28816a64fd02045fc1a3ea40ad68d29db27f205ad6a"
+    },
+    {
+      "path": "app/src/main/java/pe/edu/unmsm/siderurgica/firebase/FirestoreBusinessRepository.kt",
+      "start": 192,
+      "end": 196,
+      "sha256": "7c5b3247c312188086f0087c2f2435629ea93f18a90b12a514c799eeb6114933"
+    },
+    {
+      "path": "app/src/main/java/pe/edu/unmsm/siderurgica/worker/PendingSyncWorker.kt",
+      "start": 33,
+      "end": 33,
+      "sha256": "fac1ef934607c4c34a67866059c710f05e313eea082f59616a38b84bc25e3215"
+    },
+    {
+      "path": "app/src/main/java/pe/edu/unmsm/siderurgica/firebase/PurchaseEvidenceRepository.kt",
+      "start": 14,
+      "end": 25,
+      "sha256": "f4b2622969c6fae461395df7aacd4d64da5f55f068a61591bc70c96ac6a852ea"
+    },
+    {
+      "path": "app/src/main/java/pe/edu/unmsm/siderurgica/firebase/PurchaseEvidenceRepository.kt",
+      "start": 26,
+      "end": 33,
+      "sha256": "e5fba1f5e0bbd37a49410b7cf462a7501019c617e87541597a06e635e077f6eb"
+    },
+    {
+      "path": "app/src/main/java/pe/edu/unmsm/siderurgica/ui/screens/business/PurchasePhotoCapture.kt",
+      "start": 55,
+      "end": 61,
+      "sha256": "802d0406a27d930bf0c9e4968e9562e757b4fba5bd311d8ead96ecdcff86de26"
+    },
+    {
+      "path": "app/src/main/java/pe/edu/unmsm/siderurgica/firebase/PurchaseEvidenceRepository.kt",
+      "start": 34,
+      "end": 51,
+      "sha256": "27ae8f74890f1b7c9486f7e037c384bb26cd3d0741df8a1de6608dbe858789ec"
+    },
+    {
+      "path": "app/src/main/java/pe/edu/unmsm/siderurgica/ui/screens/business/PurchasePhotoCapture.kt",
+      "start": 51,
+      "end": 54,
+      "sha256": "3aa88bf9e87c25799605376cd660e7fc596503c703086b8f3d17539e80d4f91b"
+    },
+    {
+      "path": "app/src/main/java/pe/edu/unmsm/siderurgica/ui/screens/products/ProductViewModel.kt",
+      "start": 19,
+      "end": 19,
+      "sha256": "f3ef8f1aadc8562a52020e5bb02250eda4572976114486909fb5c5ef857b2a49"
+    },
+    {
+      "path": "app/src/main/java/pe/edu/unmsm/siderurgica/firebase/FirestoreCommerceRepository.kt",
+      "start": 14,
+      "end": 24,
+      "sha256": "335a6fdd829ce4b9a29ddaaa3714fc61ab8f3a94c8da74919f04d4b63c3848df"
+    },
+    {
+      "path": "app/src/main/java/pe/edu/unmsm/siderurgica/firebase/FirestoreBusinessRepository.kt",
+      "start": 43,
+      "end": 48,
+      "sha256": "8f9a06575d831269bf48825a5e2af8b1cc252891cfcfd44f2a92f2e3f6f17bf7"
+    },
+    {
+      "path": "app/src/main/java/pe/edu/unmsm/siderurgica/worker/PendingSyncWorker.kt",
+      "start": 39,
+      "end": 48,
+      "sha256": "9f736cac471677308bde760b60f7d5e8c1de1ebc80e4eee9f3c69dca69f5d53d"
+    },
+    {
+      "path": "app/src/main/java/pe/edu/unmsm/siderurgica/ui/screens/drafts/DraftViewModel.kt",
+      "start": 16,
+      "end": 19,
+      "sha256": "34ff7f41a3cb58acbe2e97d2f4c5085306142a67605736162491dab613c8cbd8"
+    },
+    {
+      "path": "firestore.rules",
+      "start": 323,
+      "end": 344,
+      "sha256": "1c3f8eb8f424f69ecc30a6ff273c98c2098c6eac5ef06761418dd43b69ebf544"
+    },
+    {
+      "path": "firestore.rules",
+      "start": 377,
+      "end": 386,
+      "sha256": "e4fd30ca6de7aed1de13445533b3cad7430961a3711d94093af99d2d1cc42378"
+    },
+    {
+      "path": "storage.rules",
+      "start": 26,
+      "end": 37,
+      "sha256": "0f6e87e8cc7b87627197524e39892080229c0dac2d6c5f054f7332c1318d31c3"
+    }
+  ],
+  "sourceSha256": {
+    "app/src/main/java/pe/edu/unmsm/siderurgica/ui/screens/suppliers/SupplierScreen.kt": "2b4a4f95c8f362c29ad2cebde6a6a337ad8633bbba90787b2bb61b2502c43300",
+    "app/src/main/java/pe/edu/unmsm/siderurgica/ui/screens/suppliers/SupplierViewModel.kt": "61b0dd333163808ee3eb9f7370ef46f68bf5653bdd96b0fbf995dfefe48822c6",
+    "app/src/main/java/pe/edu/unmsm/siderurgica/domain/rules/InputRules.kt": "39c11f747e81bd28d49cdc4f6ab1217f2f98fd0d460303546a0d792ea2299136",
+    "app/src/main/java/pe/edu/unmsm/siderurgica/data/remote/RucApi.kt": "c64e825db6922d94a19b222178e55728fd4cdd1a71475f4fa75f274aca07c4d5",
+    "app/src/main/java/pe/edu/unmsm/siderurgica/di/AppModule.kt": "0be0c715b56de4064d855a0d3faab0f217748f7737cef4f3a2bb678c3d9833a3",
+    "app/src/main/java/pe/edu/unmsm/siderurgica/domain/model/Supplier.kt": "355fe22c076f1ea376a6afe9cb9c60f580a3b94083cb929104aab9458d995d0c",
+    "app/src/main/java/pe/edu/unmsm/siderurgica/domain/rules/SupplierRules.kt": "85c43e91c8e6e0943d62aa2727eb9e8311e60ce840c8ce17e4bf8fdf84af249a",
+    "app/src/main/java/pe/edu/unmsm/siderurgica/data/local/QueueRepository.kt": "003388e357c5d900eddf72101ae98ff185262765de60bb54cfc31c9c0b3f7397",
+    "app/src/main/java/pe/edu/unmsm/siderurgica/data/local/LocalDatabase.kt": "876fbfb25a35e63058338ac5b6eaf4bd5d95281d8c84a201139a2384d01f4c3f",
+    "app/src/main/java/pe/edu/unmsm/siderurgica/worker/PendingSyncWorker.kt": "420882518c4726d1c8e3c4c70acb2b78067b2095ed3e407d792f2abeb2e8cd41",
+    "app/src/main/java/pe/edu/unmsm/siderurgica/firebase/FirestoreSupplierRepository.kt": "eb28a4624c25105e3f6aa6b56b57e057d8cc6e2de7628d41ddda45cc23c8a7fc",
+    "firestore.rules": "6b21f524f3359e01777fb2ade223aaf05a3f585fbbef58d59d5408430793d710",
+    "app/src/main/java/pe/edu/unmsm/siderurgica/ui/screens/business/PurchaseScreen.kt": "9f0e163302b512f0f507b2668f723f1aa917c5a96c757d2f0f3bbaca4ca2d150",
+    "app/src/main/java/pe/edu/unmsm/siderurgica/ui/screens/business/BusinessViewModel.kt": "5b719ce6c2e3fd68be1b2c53700c96a1be5a576d9718a613950d46367bef7874",
+    "app/src/main/java/pe/edu/unmsm/siderurgica/firebase/FirebaseServices.kt": "8ec18011a28a55e115a641298abed74009621ecc9ef437edfaced4620aa3994d",
+    "app/src/main/java/pe/edu/unmsm/siderurgica/firebase/FirestoreBusinessRepository.kt": "a6c5e6ef1508843b6ebb5aee34ad022c4b866799461abcf5b41c22386581c08b",
+    "app/src/main/java/pe/edu/unmsm/siderurgica/domain/rules/PurchaseRules.kt": "79f850e7147940ae407370cfd97323e0ecf64406e1fccffcff000cdbf4a964ac",
+    "app/src/main/java/pe/edu/unmsm/siderurgica/ui/screens/business/BusinessScreen.kt": "cb9b3ceb7b1c4d4bdd5888fc34a1f3ca6234f983d7bf863288b11185b1c8c8bc",
+    "app/src/main/java/pe/edu/unmsm/siderurgica/domain/rules/BusinessRules.kt": "8ffe9f263d7b12067edb78d24f46aa47eced78f6ac262a16938ca864e3704e66",
+    "app/src/main/java/pe/edu/unmsm/siderurgica/domain/rules/SalesRules.kt": "6c889e3405777ca2f0756e64246acd8afb3b69b048d8f1fecd8c22aeaa91372b",
+    "app/src/main/java/pe/edu/unmsm/siderurgica/ui/screens/business/PurchasePdfActions.kt": "9b1283655bdd62c9cb810829be44fe90b9f820410302e3a7ff454003773720f5",
+    "app/src/main/java/pe/edu/unmsm/siderurgica/data/documents/PurchasePdfRepository.kt": "46e047988674df95ab4c5c924197f3706ccebf696d068828c0567853767bc1b1",
+    "app/src/main/java/pe/edu/unmsm/siderurgica/ui/screens/business/PurchasePhotoCapture.kt": "53b1446177f6e70a1252d8a777a69601f4063d11fbccd61cb839a977006aa382",
+    "app/src/main/java/pe/edu/unmsm/siderurgica/data/documents/DocumentScanner.kt": "33b9d1e869a881249474c592c3e88e78b048e97609012613b225989cb4cd5240",
+    "app/src/main/java/pe/edu/unmsm/siderurgica/domain/rules/InvoiceParser.kt": "e815c5e15ad97278518dc333ba5031f57912f0fd80a8faba20b32bdf68cb6e69",
+    "app/src/main/java/pe/edu/unmsm/siderurgica/domain/model/PurchasePhoto.kt": "39f3f6655dfa67a8cd778f13e467f0c67474ffee391b9ed9846af83af3c6514f",
+    "app/src/main/java/pe/edu/unmsm/siderurgica/firebase/PurchaseEvidenceRepository.kt": "8535f19be99732a523df6086e4d976266551199a032aaa750ca959782085ebcd",
+    "app/src/main/java/pe/edu/unmsm/siderurgica/ui/screens/products/ProductViewModel.kt": "d708e7846816caa9da9c7bf301776401852bfb12af97cbdcf5b0d39387a0881c",
+    "app/src/main/java/pe/edu/unmsm/siderurgica/firebase/FirestoreCommerceRepository.kt": "76fa06159049d5fa086b5e00fcf413f572ac77ad34e5c3483dba327450c945d4",
+    "app/src/main/java/pe/edu/unmsm/siderurgica/ui/screens/drafts/DraftViewModel.kt": "07c1214841f63922f419dacef94d2b3bcf5621d9dc6f55312384cb4b4b88eb77",
+    "storage.rules": "9c504b16a8f091bd53750f79c3ced4652a194be40b45c0ff1a3c812f70bbec4b"
+  }
+}

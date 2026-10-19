@@ -1,3 +1,5 @@
+> Para el recorrido completo desde proveedores e integración HU09, consulta [GUIA_EXPOSICION_COMPLETA_HU08_HU09.md](GUIA_EXPOSICION_COMPLETA_HU08_HU09.md). Incluye narración, código exacto y enlaces de fuentes.
+
 # Guion técnico HU08 — ejecución y respaldo de recepción
 
 Los fragmentos son exactos de la versión actual. El punto de entrada es Compose; no hay controlador Spring. Para la demo sigue `GUIA_HU08_COMPRAS_Y_PRUEBAS.md`.

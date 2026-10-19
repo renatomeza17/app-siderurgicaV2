@@ -1,3 +1,5 @@
+> Para el recorrido completo desde proveedores e integración HU09, consulta [GUIA_EXPOSICION_COMPLETA_HU08_HU09.md](GUIA_EXPOSICION_COMPLETA_HU08_HU09.md). Incluye narración, código exacto y enlaces de fuentes.
+
 # HU08 — Compras claras y recepción con respaldo opcional
 
 ## Qué se ingresa manualmente y dónde se usa la cámara
